@@ -1,0 +1,50 @@
+.wrap {
+  position: relative;
+}
+
+.select {
+  width: 100%;
+  padding: var(--space-2) var(--space-8) var(--space-2) var(--space-3);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--color-text);
+  appearance: none;
+  cursor: pointer;
+}
+
+.sm {
+  min-height: 28px;
+}
+
+.md {
+  min-height: 36px;
+}
+
+.lg {
+  min-height: 44px;
+}
+
+@media (hover: hover) {
+  .select:hover:not(:disabled) {
+    border-color: color-mix(in srgb, var(--color-text) 45%, transparent);
+  }
+}
+
+.select:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.select[aria-invalid='true'] {
+  border-color: var(--color-danger);
+}
+
+.chevron {
+  position: absolute;
+  right: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}

@@ -1,0 +1,53 @@
+import { Meta } from '@storybook/blocks';
+import { PageMasthead } from '../docs/PageMasthead/PageMasthead';
+import { ResultRow } from '../docs/ResultRow/ResultRow';
+import { Foundation, specimen } from './Foundation';
+
+<Meta title="Guides/Layout" />
+
+<Foundation
+  title="Layout"
+  rule="Nav / 68ch article / rail. 1px hairlines. Panels use `--radius-panel`. Search returns sections, with token cost."
+  why="No nested cards. No hero covers. Pages are not the retrieval unit."
+>
+  <div className={specimen.shell}>
+    <div className={specimen.col}>
+      <p className={specimen.kicker}>Nav</p>
+      <p>Platform</p>
+      <p>Growth</p>
+    </div>
+    <div className={`${specimen.col} ${specimen.article}`}>
+      <p className={specimen.kicker}>Article · 68ch</p>
+      <p className={specimen.title}>Backoff policy</p>
+      <p>Prose lives here. The rail holds tok/idx, not a second essay.</p>
+    </div>
+    <div className={specimen.col}>
+      <p className={specimen.kicker}>Rail</p>
+      <p className={specimen.mono}>tok 2,100</p>
+      <p className={specimen.mono}>idx 1.0</p>
+    </div>
+  </div>
+  <PageMasthead
+    crumb="Platform / Knowledge service"
+    title="Rate limits & retries"
+    purpose="How the knowledge service sheds load, what it returns when it does, and the retry policy every client is expected to implement."
+    owner="@platform-core"
+    verifiedAt="6d ago"
+    commit="4a91c02"
+    words={1240}
+    tokens={2100}
+  />
+  <ResultRow
+    score={0.91}
+    title="Rate limits & retries"
+    section="Backoff policy"
+    snippet={
+      <>
+        Do not retry <mark>409</mark>.
+      </>
+    }
+    tokens={180}
+    path="#backoff-policy"
+    selected
+  />
+</Foundation>

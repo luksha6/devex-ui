@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/blocks';
+import { Foundation, specimen } from './Foundation';
+
+<Meta title="Guides/Installation" />
+
+<Foundation
+  title="Installation"
+  rule="Import styles.css once. Consume dist. Hex lives in src/tokens/. Stories are not tests."
+  why="Do not deep-import src/. Do not iframe the catalog as the package. The JS entry does not apply CSS. Overlay primitives are client components until a react-server export exists."
+>
+  <table className={specimen.table}>
+    <thead>
+      <tr>
+        <th>Import</th>
+        <th>Gets</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className={specimen.mono}>@devex/ui/styles.css</td>
+        <td>Tokens, reset, compiled modules, Onest. Required once per app.</td>
+      </tr>
+      <tr>
+        <td className={specimen.mono}>@devex/ui</td>
+        <td>Product primitives: actions, forms, overlays, data, type</td>
+      </tr>
+      <tr>
+        <td className={specimen.mono}>@devex/ui/docs</td>
+        <td>
+          Documentation composites: PageMasthead, AudienceSwitch, CodeBlock, ParameterTable,
+          Callout, ResultRow, FreshnessStamp, SectionAnchor, Stream, ToolCall, RunStatus, plus
+          toAgentMarkdown and renderHuman
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</Foundation>

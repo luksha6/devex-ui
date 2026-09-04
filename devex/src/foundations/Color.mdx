@@ -1,0 +1,29 @@
+import { Meta } from '@storybook/blocks';
+import { Alert } from '../primitives/Alert/Alert';
+import { Button } from '../primitives/Button/Button';
+import { Foundation, specimen } from './Foundation';
+
+<Meta title="Foundations/Color" />
+
+<Foundation
+  title="Color"
+  rule="Primary is brand green. Danger is red. Success is green. Warning is amber. Status hues pass 4.5:1 at 11px."
+  why="Red means stop or destroy. Green means ok. Primary is the next step, not an alert. Hairlines stay pale. Controls use a darker border."
+>
+  <div className={specimen.pair}>
+    <div className={specimen.related}>
+      <p className={specimen.kicker}>Action</p>
+      <Button>Verify</Button>
+      <Button intent="secondary">Open the diff</Button>
+      <p className={specimen.body}>Primary is the brand green. Outline is the other option.</p>
+    </div>
+    <div className={specimen.related}>
+      <p className={specimen.kicker}>Status</p>
+      <Button intent="danger">Revoke</Button>
+      <Alert kind="ok" title="Complete">
+        Cutover finished.
+      </Alert>
+      <p className={specimen.body}>Revoke is red. Complete is success green. Both are labeled in type.</p>
+    </div>
+  </div>
+</Foundation>

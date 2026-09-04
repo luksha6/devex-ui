@@ -1,0 +1,65 @@
+.row {
+  display: grid;
+  grid-template-columns: var(--space-8) 1fr auto;
+  gap: var(--space-3);
+  align-items: start;
+  width: 100%;
+  padding: var(--space-3);
+  border: 0;
+  border-bottom: var(--border-width) solid var(--color-divider);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+}
+
+.selected {
+  background: color-mix(in srgb, var(--color-text) 5%, transparent);
+  box-shadow: inset var(--border-width) 0 0 var(--color-interactive);
+}
+
+@media (hover: hover) {
+  .row:hover {
+    background: color-mix(in srgb, var(--color-text) 5%, transparent);
+  }
+}
+
+.score {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+}
+
+.title {
+  font-size: var(--text-body);
+}
+
+.snippet {
+  margin-top: var(--space-1);
+  font-size: var(--text-body);
+  color: var(--color-text-muted);
+}
+
+.snippet mark {
+  background: var(--color-mark-bg);
+  color: var(--color-text);
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+  text-align: right;
+}
+
+.withheld {
+  cursor: default;
+  grid-template-columns: 1fr;
+}
+
+.reason {
+  font-size: var(--text-mono);
+  color: var(--st-dep-deep);
+}

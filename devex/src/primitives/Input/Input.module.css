@@ -1,0 +1,41 @@
+.input {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--color-text);
+  caret-color: var(--color-interactive);
+}
+
+.sm {
+  min-height: 28px;
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--text-label);
+}
+
+.md {
+  min-height: 36px;
+}
+
+.lg {
+  min-height: 44px;
+}
+
+.input::placeholder {
+  color: var(--color-text-muted);
+}
+
+@media (hover: hover) {
+  .input:hover:not(:disabled) {
+    border-color: color-mix(in srgb, var(--color-text) 45%, transparent);
+  }
+}
+
+.input:disabled {
+  opacity: 0.45;
+}
+
+.input[aria-invalid='true'] {
+  border-color: var(--color-danger);
+}

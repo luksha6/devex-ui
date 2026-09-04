@@ -1,0 +1,15 @@
+.item {
+  color: inherit;
+  text-decoration: none;
+  font-size: var(--text-body);
+}
+
+.current {
+  color: var(--color-interactive);
+}
+
+@media (hover: hover) {
+  .item:hover {
+    color: var(--color-interactive);
+  }
+}

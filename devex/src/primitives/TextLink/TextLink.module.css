@@ -1,0 +1,10 @@
+.link {
+  color: var(--color-interactive);
+  text-underline-offset: var(--space-1);
+}
+
+@media (hover: hover) {
+  .link:hover {
+    color: var(--color-interactive-deep);
+  }
+}

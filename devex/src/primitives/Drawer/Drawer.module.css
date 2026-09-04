@@ -1,0 +1,119 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  display: flex;
+  background: var(--color-overlay);
+}
+
+.backdropBottom {
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.backdropEnd {
+  align-items: stretch;
+  justify-content: flex-end;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  box-shadow: var(--shadow-panel);
+}
+
+.panelBottom {
+  width: 100%;
+  max-height: 90vh;
+  border-radius: var(--radius-panel) var(--radius-panel) 0 0;
+  animation: slide-up var(--duration-base) var(--ease-standard);
+}
+
+.panelEnd {
+  width: min(360px, 100%);
+  height: 100%;
+  animation: slide-end var(--duration-base) var(--ease-standard);
+}
+
+.grab {
+  width: var(--space-8);
+  height: var(--space-1);
+  margin: var(--space-2) auto 0;
+  border-radius: var(--radius-full);
+  background: var(--color-divider);
+}
+
+.panelEnd .grab {
+  display: none;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+}
+
+.title {
+  font-size: var(--text-title);
+  font-weight: 500;
+}
+
+.close {
+  flex: none;
+}
+
+.body {
+  overflow: auto;
+  padding: 0 var(--space-4) var(--space-4);
+  min-height: 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  border-top: var(--border-width) solid var(--color-divider);
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-end {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 639px) {
+  .backdropEnd {
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .panelEnd {
+    width: 100%;
+    height: auto;
+    max-height: 90vh;
+    border-radius: var(--radius-panel) var(--radius-panel) 0 0;
+    animation-name: slide-up;
+  }
+
+  .panelEnd .grab {
+    display: block;
+  }
+}

@@ -1,0 +1,52 @@
+.label {
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 400;
+  line-height: var(--leading-body);
+  max-width: var(--measure-prose);
+  text-align: left;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--text-title);
+  font-weight: 400;
+  line-height: var(--leading-title);
+  text-align: left;
+}
+
+.section {
+  font-family: var(--font-heading);
+  font-size: var(--text-section);
+  font-weight: 400;
+  line-height: var(--leading-title);
+  text-align: left;
+}
+
+.display {
+  font-family: var(--font-heading);
+  font-size: var(--text-display);
+  font-weight: 400;
+  line-height: var(--leading-display);
+  text-align: left;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-kicker);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}

@@ -1,0 +1,17 @@
+.group {
+  display: inline-flex;
+  align-items: center;
+}
+
+.group > * {
+  box-shadow: 0 0 0 calc(var(--border-width) * 2) var(--color-bg);
+}
+
+.group > :not(:first-child) {
+  margin-left: calc(var(--space-2) * -1);
+}
+
+.extra {
+  composes: avatar md tone4 from '../Avatar/Avatar.module.css';
+  font-variant-numeric: tabular-nums;
+}

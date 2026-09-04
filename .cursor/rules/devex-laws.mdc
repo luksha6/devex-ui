@@ -1,0 +1,13 @@
+---
+description: Devex visual laws — radius, space, color.
+globs: devex/**/*.{css,ts,tsx,mdx}
+alwaysApply: false
+---
+
+# Visual laws
+
+Controls use `--radius-control` (12px). Panels use `--radius-panel` (16px). Icon buttons, chips, radios, and switches use `--radius-full`. Checkboxes use `--radius-tight` (4px). Space is integer 4px (`--space-1` is 4px). One family: Onest. Measure 68ch.
+
+`--color-interactive` is brand green (`#22463d`), the next step. `--color-danger` is red (`#cc1100`). `--color-success` is green (`#306b00`). `--color-warning` is amber (`#995200`). Status hues must pass 4.5:1 on `--color-bg` at 11px. Controls use `--color-border`; hairlines stay `--color-divider`. Deprecated lifecycle stays muted gray (`--st-dep`), not red.
+
+Color is never the only channel. Status, lifecycle, and uncertainty have words.

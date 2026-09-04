@@ -1,0 +1,48 @@
+.stream {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.uncertainty {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-kicker);
+  text-transform: uppercase;
+  color: var(--color-warning);
+}
+
+.body {
+  margin: 0;
+  min-height: var(--space-8);
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.caret {
+  display: inline-block;
+  width: var(--space-2);
+  height: 1em;
+  margin-left: var(--space-1);
+  vertical-align: text-bottom;
+  background: var(--color-interactive);
+  animation: blink var(--duration-loop) step-end infinite;
+}
+
+.done .caret {
+  display: none;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+  }
+}

@@ -1,0 +1,24 @@
+.row {
+  display: grid;
+  grid-template-columns: minmax(120px, 180px) minmax(0, 1fr);
+  gap: var(--space-3) var(--space-4);
+  align-items: start;
+  padding: var(--space-3) 0;
+  border-bottom: var(--border-width) solid var(--color-divider);
+}
+
+.label {
+  font-size: var(--text-label);
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.hint {
+  font-size: var(--text-label);
+  color: var(--color-text-muted);
+  margin-top: var(--space-1);
+}
+
+.control {
+  min-width: 0;
+}

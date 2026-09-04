@@ -1,15 +1,20 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-
+# Dependencies and build
 node_modules
 dist
 dist-ssr
+storybook-static
 coverage
-*.local
 
+# Logs and env
+logs
+*.log
+npm-debug.log*
+*.local
+.env
+.env.*
+
+# Editor / OS
+.DS_Store
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store

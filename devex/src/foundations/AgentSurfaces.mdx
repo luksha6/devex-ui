@@ -1,0 +1,54 @@
+import { Meta } from '@storybook/blocks';
+import { RunStatus } from '../docs/RunStatus/RunStatus';
+import { Stream } from '../docs/Stream/Stream';
+import { ToolCall } from '../docs/ToolCall/ToolCall';
+import { Foundation, specimen } from './Foundation';
+
+<Meta title="Guides/Agent surfaces" />
+
+<Foundation
+  title="Agent surfaces"
+  rule="Latency is elapsed on the run. Tokens stream in place. Tools are rows. Failure is a reason, not a spinner that never ends."
+  why="A toast cannot carry a 40-second job. Uncertainty is typed. Fail is red. Reduced motion skips the caret loop, not the result."
+>
+  <p className={specimen.lede}>Approve starts the run. The control does not wait.</p>
+  <div className={specimen.pair}>
+    <div className={specimen.related}>
+      <p className={specimen.kicker}>Running</p>
+      <RunStatus phase="running" label="Reindex knowledge-prod" elapsedMs={12000} />
+      <ToolCall
+        name="corpus.status"
+        status="ok"
+        args="id=knowledge-prod"
+        result="blocked"
+        latencyMs={41}
+      />
+      <ToolCall name="corpus.write" status="running" args="chunks=12" />
+      <ToolCall name="corpus.cutover" status="queued" />
+      <Stream
+        text={'checking corpus knowledge-prod\nstatus=blocked\nwriting 12 chunks\n'}
+        uncertainty="low"
+      />
+    </div>
+    <div className={specimen.related}>
+      <p className={specimen.kicker}>Fail</p>
+      <RunStatus
+        phase="fail"
+        label="Reindex knowledge-prod"
+        detail="Replica lag is over 30s. Cutover did not run."
+        elapsedMs={880}
+      />
+      <ToolCall
+        name="corpus.cutover"
+        status="fail"
+        result="replica lag 32s"
+        latencyMs={880}
+      />
+      <Stream
+        text={'checking corpus knowledge-prod\nstatus=blocked\nreplica lag 32s\n'}
+        complete
+        uncertainty="high"
+      />
+    </div>
+  </div>
+</Foundation>

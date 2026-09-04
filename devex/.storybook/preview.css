@@ -1,0 +1,18 @@
+.sbdocs .sbdocs-title {
+  display: none;
+}
+
+.sbdocs input[type='radio'],
+.sbdocs input[type='checkbox'] {
+  accent-color: var(--color-interactive);
+}
+
+.sbdocs.sbdocs-wrapper,
+.sbdocs.sbdocs-content {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  font-weight: 400;
+  line-height: var(--leading-body);
+}

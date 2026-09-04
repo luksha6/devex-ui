@@ -1,0 +1,53 @@
+.callout {
+  composes: edge from '../../primitives/Alert/StatusEdge.module.css';
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background: var(--color-surface);
+}
+
+.note {
+  composes: note from '../../primitives/Alert/StatusEdge.module.css';
+}
+
+.caution {
+  composes: caution from '../../primitives/Alert/StatusEdge.module.css';
+}
+
+.agent {
+  composes: agent from '../../primitives/Alert/StatusEdge.module.css';
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.note .icon {
+  color: var(--color-interactive);
+}
+
+.kind {
+  composes: kind from '../../primitives/Alert/StatusEdge.module.css';
+  color: var(--color-text-muted);
+}
+
+.caution .kind,
+.caution .icon {
+  color: var(--color-warning);
+}
+
+.agent .kind {
+  color: var(--color-interactive);
+}
+
+.body {
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  max-width: var(--measure-prose);
+}
+
+.toggle {
+  margin-left: auto;
+}

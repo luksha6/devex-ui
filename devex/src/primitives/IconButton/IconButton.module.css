@@ -1,0 +1,61 @@
+.button {
+  composes: button from '../Button/Button.module.css';
+  padding: 0;
+  gap: 0;
+  border-radius: var(--radius-full);
+}
+
+.sm {
+  width: 28px;
+  height: 28px;
+  min-height: 28px;
+  padding: 0;
+  border-radius: var(--radius-full);
+}
+
+.md {
+  width: 36px;
+  height: 36px;
+  min-height: 36px;
+  padding: 0;
+  border-radius: var(--radius-full);
+}
+
+.lg {
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
+  border-radius: var(--radius-full);
+}
+
+.primary {
+  composes: primary from '../Button/Button.module.css';
+  border-radius: var(--radius-full);
+}
+
+.secondary {
+  composes: secondary from '../Button/Button.module.css';
+  border-radius: var(--radius-full);
+}
+
+.danger {
+  composes: danger from '../Button/Button.module.css';
+  border-radius: var(--radius-full);
+}
+
+.ghost {
+  composes: ghost from '../Button/Button.module.css';
+  padding-inline: 0;
+  border-radius: var(--radius-full);
+}
+
+.filled {
+  composes: filled from '../Button/Button.module.css';
+  border-radius: var(--radius-full);
+}
+
+.outline {
+  composes: outline from '../Button/Button.module.css';
+  border-radius: var(--radius-full);
+}

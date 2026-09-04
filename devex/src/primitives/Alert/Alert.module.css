@@ -1,0 +1,58 @@
+.alert {
+  composes: edge from './StatusEdge.module.css';
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--space-3);
+  align-items: start;
+  background: var(--color-bg);
+}
+
+.icon {
+  color: var(--color-text-muted);
+  margin-top: var(--space-1);
+}
+
+.kind {
+  composes: kind from './StatusEdge.module.css';
+}
+
+.title {
+  font-size: var(--text-body);
+  margin-top: var(--space-1);
+}
+
+.detail {
+  font-size: var(--text-body);
+  margin-top: var(--space-1);
+}
+
+.note {
+  composes: note from './StatusEdge.module.css';
+}
+
+.ok {
+  composes: ok from './StatusEdge.module.css';
+}
+
+.ok .kind,
+.ok .icon {
+  color: var(--st-stable-deep);
+}
+
+.caution {
+  composes: caution from './StatusEdge.module.css';
+}
+
+.caution .kind,
+.caution .icon {
+  color: var(--color-warning);
+}
+
+.critical {
+  composes: critical from './StatusEdge.module.css';
+}
+
+.critical .kind,
+.critical .icon {
+  color: var(--color-danger);
+}

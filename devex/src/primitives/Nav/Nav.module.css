@@ -1,0 +1,29 @@
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: var(--border-width) solid var(--color-divider);
+  background: var(--color-bg);
+}
+
+.brand {
+  font-family: var(--font-sans);
+  font-size: var(--text-title);
+  font-weight: 500;
+  margin-right: auto;
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .brand:hover {
+    color: inherit;
+  }
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}

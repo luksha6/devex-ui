@@ -1,0 +1,69 @@
+.stack {
+  position: fixed;
+  z-index: var(--z-toast);
+  left: var(--space-4);
+  bottom: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: min(420px, calc(100% - var(--space-8)));
+}
+
+.item {
+  composes: edge from '../Alert/StatusEdge.module.css';
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--space-3);
+  align-items: start;
+  background: var(--color-bg);
+}
+
+.icon {
+  color: var(--color-text-muted);
+  margin-top: var(--space-1);
+}
+
+.kind {
+  composes: kind from '../Alert/StatusEdge.module.css';
+}
+
+.title {
+  font-size: var(--text-body);
+  margin-top: var(--space-1);
+}
+
+.detail {
+  font-size: var(--text-body);
+  margin-top: var(--space-1);
+}
+
+.note {
+  composes: note from '../Alert/StatusEdge.module.css';
+}
+
+.ok {
+  composes: ok from '../Alert/StatusEdge.module.css';
+}
+
+.ok .kind,
+.ok .icon {
+  color: var(--st-stable-deep);
+}
+
+.caution {
+  composes: caution from '../Alert/StatusEdge.module.css';
+}
+
+.caution .kind,
+.caution .icon {
+  color: var(--color-warning);
+}
+
+.critical {
+  composes: critical from '../Alert/StatusEdge.module.css';
+}
+
+.critical .kind,
+.critical .icon {
+  color: var(--color-danger);
+}

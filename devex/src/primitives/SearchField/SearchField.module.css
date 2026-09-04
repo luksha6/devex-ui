@@ -1,0 +1,27 @@
+.wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.leading {
+  position: absolute;
+  left: var(--space-3);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.input {
+  padding-left: var(--space-8);
+  padding-right: var(--space-8);
+}
+
+.clear {
+  position: absolute;
+  right: var(--space-1);
+}
+
+.input[type='search']::-webkit-search-decoration,
+.input[type='search']::-webkit-search-cancel-button {
+  appearance: none;
+}

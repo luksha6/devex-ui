@@ -1,0 +1,119 @@
+.table {
+  composes: table from '../Table/Table.module.css';
+}
+
+.wrap {
+  composes: shell from '../Table/Table.module.css';
+  position: relative;
+}
+
+.caption {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  font-weight: 500;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border-bottom: var(--border-width) solid var(--color-divider);
+}
+
+.scroller {
+  overflow-x: auto;
+}
+
+.table th {
+  padding: 0;
+  vertical-align: bottom;
+}
+
+td.fill {
+  width: 100%;
+}
+
+.numeric {
+  width: 1%;
+  text-align: right;
+  white-space: nowrap;
+}
+
+td.numeric {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.mono {
+  composes: mono from '../Table/Table.module.css';
+  font-variant-numeric: tabular-nums;
+}
+
+.head,
+.sort {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-1);
+  min-height: 36px;
+  padding: var(--space-3) var(--space-4);
+  box-sizing: border-box;
+}
+
+.numeric .head,
+.numeric .sort {
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.sort {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-align: inherit;
+}
+
+.sorted {
+  color: var(--color-interactive);
+}
+
+@media (hover: hover) {
+  .sort:hover {
+    color: var(--color-interactive);
+  }
+}
+
+.idle {
+  opacity: 0.4;
+}
+
+.sort:focus-visible .idle {
+  opacity: 0.45;
+}
+
+@media (hover: hover) {
+  .sort:hover .idle {
+    opacity: 0.45;
+  }
+}
+
+.active {
+  color: var(--color-interactive);
+}
+
+.empty {
+  color: var(--color-text-muted);
+  padding: var(--space-6) var(--space-3);
+}
+
+.loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--color-bg) 72%, transparent);
+}

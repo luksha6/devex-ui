@@ -1,0 +1,13 @@
+---
+description: Devex dual-reader split and agent surfaces.
+globs: devex/**/*.{ts,tsx,mdx}
+alwaysApply: false
+---
+
+# Dual reader
+
+`.` is product primitives. `./docs` is documentation composites. Primitives must not import docs.
+
+Human and Agent are two faces of one `DocBlock` AST. Human view is `renderHuman`. Agent view is `toAgentMarkdown`. `AudienceSwitch` takes that array. Agent view is not a second layout.
+
+Long-running work is a run: elapsed on `RunStatus`, tokens on `Stream`, tools on `ToolCall`. Failure is a reason, in red. Do not put progress in a toast. Reduced motion skips the caret loop and the token drip; it still shows the result.

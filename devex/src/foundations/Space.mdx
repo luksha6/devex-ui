@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/blocks';
+import { Foundation, specimen } from './Foundation';
+
+<Meta title="Foundations/Space" />
+
+<Foundation
+  title="Space"
+  rule="Integer 4px. Related items share `--space-2` (8px). Sections share `--space-6` (24px). Controls use `--radius-control`; panels use `--radius-panel`. The scale is `--space-1` `--space-2` `--space-3` `--space-4` `--space-6` `--space-8`. There is no `--space-5` or `--space-7`."
+  why="No 4.6px or 6px gaps. Optical-only borders are not spacing. Agents must not invent `--space-5`."
+>
+  <div className={specimen.pair}>
+    <div className={specimen.sectioned}>
+      <div className={specimen.related}>
+        <p className={specimen.kicker}>Related · 8px</p>
+        <p className={specimen.title}>Backoff policy</p>
+        <p className={specimen.body}>Retry-After is authoritative.</p>
+      </div>
+      <div className={specimen.related}>
+        <p className={specimen.kicker}>Next section · 24px above</p>
+        <p className={specimen.title}>Budgets</p>
+        <p className={specimen.body}>Hard cap. 429 after this is a shed, not a bug.</p>
+      </div>
+    </div>
+    <div className={specimen.refused}>
+      <p className={specimen.refusedLabel}>Refused · 6px stack</p>
+      <div className={specimen.tight}>
+        <p className={specimen.title}>Backoff policy</p>
+        <p className={specimen.body}>Everything sits one fake notch off the scale.</p>
+        <p className={specimen.body}>Related and section look the same.</p>
+      </div>
+    </div>
+  </div>
+</Foundation>

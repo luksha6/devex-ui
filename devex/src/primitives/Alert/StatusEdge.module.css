@@ -1,0 +1,33 @@
+.edge {
+  border: var(--border-width) solid var(--color-divider);
+  border-left-width: var(--callout-rule);
+  border-radius: var(--radius-panel);
+  padding: var(--space-3);
+}
+
+.kind {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-kicker);
+  text-transform: uppercase;
+}
+
+.note {
+  border-left-color: var(--color-text);
+}
+
+.ok {
+  border-left-color: var(--st-stable);
+}
+
+.caution {
+  border-left-color: var(--color-warning);
+}
+
+.critical {
+  border-left-color: var(--color-danger);
+}
+
+.agent {
+  border-left-color: var(--color-interactive);
+}

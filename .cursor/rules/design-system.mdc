@@ -1,0 +1,123 @@
+---
+description: Consume @devex/ui — tokens, package imports, and component APIs. No raw HTML controls or hardcoded styles.
+globs: "**/*.{ts,tsx,vue,jsx,js,css,scss}"
+alwaysApply: false
+---
+
+# @devex/ui
+
+React 18/19 design system in `devex/`. Catalog: Storybook on port 6006. There is no Vue, no Tailwind, no utility classes. Hookful primitives are client components (`'use client'`). Load CSS yourself; the published JS entry does not apply it.
+
+Load CSS once per app: `import '@devex/ui/styles.css'`. That file loads Onest (300/400/500). One family. `--font-mono` aliases `--font-sans`.
+
+## Architectural laws
+
+Consumers must not ship raw HTML controls or hardcoded look:
+
+- No `<button>`, `<input>`, `<select>`, `<textarea>`, `<a>` for UI chrome. Use `Button`, `IconButton`, `Field`/`Input`, `Select`, `Textarea`, `TextLink`.
+- No hex, `rgb()`, or named colors outside `devex/src/tokens/`. Use `var(--color-*)`, `--st-*`, `--space-*`, `--font-*`, `--text-*`, `--duration-*`.
+- No raw pixel spacing (`padding: 13px`, `gap: 6px`). Integer 4px scale only (`--space-1` = 4px). There is no `--space-5` or `--space-7`.
+- No arbitrary utilities (`p-[13px]`, `bg-[#22463d]`). This package is CSS modules + tokens.
+- Controls use `--radius-control`. Panels use `--radius-panel`. Icon buttons, chips, and avatars use `--radius-full`. Measure 68ch. Color is never the only channel — status, lifecycle, and uncertainty have words.
+- Primary is brand green (`--color-interactive`). Danger is red. Success is green. Warning is amber. Deprecated is gray (`--st-dep`), not red.
+- A toast cannot carry a long-running job. Use `RunStatus` + `Stream` + `ToolCall`. Copy/cite/approve stay on the control.
+- Honor `prefers-reduced-motion` (duration tokens already collapse). Fail is red and named in type.
+
+**Exception:** native elements are allowed only inside `devex/src/primitives/*` and `devex/src/docs/*` while implementing those primitives. Consumers never do this.
+
+## Imports
+
+Package exports: `.`, `./docs`, `./styles.css`, `./tokens.css`. Never deep-import `devex/src`, `dist/*.js` paths, or relative files across the package boundary.
+
+```ts
+import '@devex/ui/styles.css';
+import { Button, Dialog, Field } from '@devex/ui';
+import { PageMasthead, renderHuman, Stream, toAgentMarkdown } from '@devex/ui/docs';
+```
+
+Primitives must not import `@devex/ui/docs` or `src/docs/`.
+
+## Component index (`@devex/ui`)
+
+| Component | Role | Variants / props |
+| --- | --- | --- |
+| `Button` | Action | `intent`: primary \| secondary \| ghost \| danger. `fill`: filled \| outline (primary defaults filled; others outline). `size`: sm \| md \| lg. `loading`, `leading`, `trailing`. Navigation is `TextLink`, not `intent="link"`. |
+| `IconButton` | Icon-only action | `label` required (accessible name). Default `intent` is `secondary`. Child is `<Icon name=…>` |
+| `Icon` | Glyph | `name`: check, close, search, chevron-down/up/right, caution, info, plus, minus, copy, external. `size`: 12 \| 16 \| 20 |
+| `Field` | Labeled text input | `label`, `hint`, `error`, `size`. Wraps `Input` |
+| `Input` | Bare input | `size`: sm \| md \| lg. Prefer `Field` |
+| `Textarea` | Multiline | `label` required, `hint`, `error`, `size`: sm \| md \| lg |
+| `Select` | Native select | `label` required, `options: { value, label, disabled? }[]`, `placeholder?` |
+| `MultiSelect` | Many values | Same options as Select. `value: string[]`, `onChange(string[])`. Search + chips. `max?` |
+| `SearchField` | Search + clear | `label` required, `onClear?`. Clear shows when the value is non-empty |
+| `Checkbox` | Checkbox | `label` |
+| `RadioGroup` + `Radio` | Radios | Group: `label`, `value`, `onChange`. `Radio` `value` + `label` (or children). Visible legend. Brand ring; selected is a brand fill with a 4px light pin |
+| `Switch` | Toggle | `label`, `checked`, `onChange(boolean)`, `offLabel?` / `onLabel?`. Pill, filled selected side. Label is not a wrapping `<label>` |
+| `SegmentedControl` | Exclusive options | `label`, `options`, `value`, `onChange`. Home/End move selection |
+| `Dialog` | Modal | **Not compound.** `open`, `onClose`, `title`, `children`, `actions?`, `width`: sm \| md. Bottom sheet under 640px. No `Dialog.Header` |
+| `Drawer` | Sheet | `open`, `onClose`, `title`, `children`, `actions?`, `side`: bottom \| end. End becomes bottom under 640px |
+| `Alert` | Inline status | `kind`: note \| ok \| caution \| critical. Kind word stays visible; `title?` is extra. `onDismiss?` |
+| `Tooltip` | Description | `content` + single element child. `aria-describedby` only while open |
+| `ToastProvider` / `useToast` | Out-of-band | Mount `<ToastProvider>` around the click target. Call `useToast().show`. Throws without a provider. `Toaster` is the same export. Not for Copied, Cite, Approve, or job progress |
+| `Text` | Type | `variant`: label \| body \| title \| section \| display \| mono \| kicker. `as?` |
+| `TextLink` | Inline link | Anchor props. Use instead of a link-styled button |
+| `Badge` | Count / live | `tone`: neutral \| count \| live |
+| `Tag` | Lifecycle | `kind`: stable \| beta \| deprecated \| internal. All four stay visible. Required is `RequiredTag`, not `kind="req"` |
+| `Spinner` | Wait | `size`: 12 \| 16 \| 20. `label` (empty string = decorative) |
+| `Avatar` / `AvatarGroup` | Identity | Avatar: `name`, `src?`, `size`: sm \| md \| lg (32 / 40 / 48). Disc, hashed brand tint. Group: `label` required, children |
+| `Nav` / `NavItem` | Chrome | Nav: `brand`, `links?`, `trailing?`. NavItem: `href`, `current?` |
+| `Tabs` | Panels | `label`, `items: { id, label, panel, disabled? }[]`, `value`, `onChange`. Not `Tabs.List` |
+| `Table` / `Mono` | Simple table | `headers`, `rows`. Panel shell. Sentence-case headers. `Mono` for ids/figures |
+| `DataTable` | Sortable data | Same shell as Table. `columns: { key, header, numeric?, mono?, sortable? }[]`, `rows`, `rowKey?`, `caption?`, `loading?`, `sortKey`/`sortDir`/`onSort?`. Only `sortable: true` columns are sort buttons |
+| `PropertyField` | Label + control row | `label`, `hint?`, `children`. `role="group"` |
+| `Portal` / `VisuallyHidden` | Internals | Portal for overlays. Clip-hide text |
+
+## Disambiguation
+
+- **Alert** — in-page product status (ok/critical/dismiss). **Callout** — docs note/caution/agent-only. **Toast** — out-of-band after the user leaves the page.
+- **Table** — static cells. **DataTable** — sortable figures; opt in per column. **ParameterTable** — docs parameter rows.
+- **Field** — labeled text input. **SearchField** — search plus clear. **PropertyField** — label beside a control.
+- **Select** — one value, native. **MultiSelect** — many values, search + chips.
+
+## Docs composites (`@devex/ui/docs`)
+
+`PageMasthead`, `AudienceSwitch` (`value`, `onChange`, `blocks: DocBlock[]`), `CodeBlock` (`languages`, `testedAgainst?`, `testedAt?`), `ParameterTable`, `Callout` (`note` \| `caution` \| `agent-only`), `ResultRow` (hit \| `kind: 'withheld'`), `FreshnessStamp`, `SectionAnchor` + `citationUri`, `Stream`, `ToolCall`, `RunStatus`, `renderHuman`, `toAgentMarkdown` / `DocBlock`.
+
+One AST, two faces. Pass the same `DocBlock[]` to `AudienceSwitch`. Do not hand-write a parallel markdown string.
+
+## Tokens (consumers)
+
+Color: `--color-bg`, `--color-surface`, `--color-text`, `--color-text-muted`, `--color-interactive`, `--color-interactive-deep`, `--color-danger`, `--color-danger-deep`, `--color-success`, `--color-success-deep`, `--color-warning`, `--color-border` (controls), `--color-divider` (hairlines), `--color-mark-bg`, `--color-focus` (alias of interactive; fields use the border, not an offset ring), `--color-overlay`. Lifecycle: `--st-stable`, `--st-beta`, `--st-dep`, `--st-int`. Space: `--space-1`, `--space-2`, `--space-3`, `--space-4`, `--space-6`, `--space-8` (4, 8, 12, 16, 24, 32). Type: Onest only. Prefer `--font-sans`. `--font-heading`, `--font-body`, and `--font-mono` alias it. `--text-label` (11px) through `--text-display` (36px), `--measure-prose`. Motion: `--duration-fast` 120ms, `--duration-base` 180ms.
+
+## GOOD vs BAD
+
+```tsx
+// BAD — raw control, hex, magic pixels, deep import, invented compound dialog, dual-source docs
+import { Button } from '@devex/ui/src/primitives/Button/Button';
+<button style={{ background: '#22463d', padding: '13px' }}>Save</button>;
+useToast().show({ title: 'Reindex running…' });
+<AudienceSwitch agentSource={md}>{human}</AudienceSwitch>
+
+// GOOD
+import '@devex/ui/styles.css';
+import { Button, Dialog, Field, ToastProvider, useToast } from '@devex/ui';
+import { AudienceSwitch, RunStatus, type DocBlock } from '@devex/ui/docs';
+
+<Field label="Corpus" value={id} onChange={…} />
+<Button intent="primary">Verify</Button>
+<Dialog open={open} onClose={close} title="Confirm cutover" actions={<Button onClick={close}>Done</Button>}>
+  Replica lag must be under 30s.
+</Dialog>
+<RunStatus phase="running" label="Reindex knowledge-prod" elapsedMs={12000} />
+<AudienceSwitch value={audience} onChange={setAudience} blocks={blocks} />
+```
+
+## Verify
+
+After generating or changing UI, from `devex/`:
+
+```bash
+npm test && npm run lint && npm run build
+```
+
+`lint` is ESLint + Stylelint + Prettier + `scripts/ban-hex.mjs`. `build` typechecks (`tsc -p tsconfig.build.json`). Do not skip. Do not `--no-verify`.

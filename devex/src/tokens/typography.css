@@ -1,0 +1,21 @@
+:root {
+  --font-sans: 'Onest', system-ui, sans-serif;
+  --font-mono: var(--font-sans);
+  --font-heading: var(--font-sans);
+  --font-body: var(--font-sans);
+
+  --text-label: 11px;
+  --text-mono: 13px;
+  --text-body: 15px;
+  --text-title: 20px;
+  --text-section: 28px;
+  --text-display: 36px;
+
+  --leading-label: 1.2;
+  --leading-body: 1.73;
+  --leading-title: 1.2;
+  --leading-display: 1.04;
+
+  --measure-prose: 68ch;
+  --tracking-kicker: 0.12em;
+}
