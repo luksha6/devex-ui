@@ -8,7 +8,7 @@ Reviewers should reject a change that ships a story without a test, or a test wi
 
 - [ ] Primitive or docs composite: `tsx` + CSS module + story + Vitest test, exported from the correct barrel.
 - [ ] No hex outside `src/tokens/`. `npm run lint` includes the ban.
-- [ ] Radius remains 0. Space snaps to the 4px scale.
+- [ ] Controls use `--radius-control`. Panels use `--radius-panel`. Space snaps to the 4px scale.
 - [ ] Primary is brand green. Danger is red. Success is green. Status is labeled in type.
 - [ ] Color is not the only channel. Status, lifecycle, and uncertainty have words.
 - [ ] Keyboard, name, and busy/disabled behavior are tested, not only screenshotted.
