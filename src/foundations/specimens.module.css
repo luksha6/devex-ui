@@ -206,6 +206,19 @@
   text-align: left;
 }
 
+.code {
+  margin: 0;
+  padding: var(--space-3);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-divider);
+  border-radius: var(--radius-panel);
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  line-height: var(--leading-body);
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
 .related {
   display: flex;
   flex-direction: column;

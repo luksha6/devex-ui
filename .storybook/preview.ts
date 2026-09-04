@@ -9,6 +9,7 @@ const preview: Preview = {
       matchers: { color: /(background|color)$/i, date: /Date$/ },
     },
     options: {
+      showPanel: false,
       storySort: {
         order: ['Foundations', 'Guides', 'Tokens', 'Primitives', 'Docs'],
       },

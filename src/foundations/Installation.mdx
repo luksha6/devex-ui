@@ -1,13 +1,51 @@
 import { Meta } from '@storybook/blocks';
-import { Foundation, specimen } from './Foundation';
+import { specimen } from './Foundation';
 
 <Meta title="Guides/Installation" />
 
-<Foundation
-  title="Installation"
-  rule="Import styles.css once. Consume dist. Hex lives in src/tokens/. Stories are not tests."
-  why="Do not deep-import src/. Do not iframe the catalog as the package. The JS entry does not apply CSS. Overlay primitives are client components until a react-server export exists."
->
+<div className={specimen.page}>
+  <header className={specimen.lede}>
+    <p className={specimen.heading} role="heading" aria-level={1}>
+      Installation
+    </p>
+    <p className={specimen.rule}>
+      Install from GitHub. Load styles once. Import the barrels. React 18 or 19 is a peer.
+    </p>
+  </header>
+  <div className={specimen.prose}>
+    <p>
+      The package is not on the npm registry yet. Install the repo. Free to use under MIT. Catalog:{' '}
+      <a href="https://luksha6.github.io/devex-ui/">luksha6.github.io/devex-ui</a>.
+    </p>
+  </div>
+  <pre className={specimen.code}>{`npm i github:luksha6/devex-ui
+npm i react react-dom`}</pre>
+  <div className={specimen.prose}>
+    <p>Then use it. Load styles.css once. The JS entry does not apply CSS.</p>
+  </div>
+  <pre
+    className={specimen.code}
+  >{`import '@devex/ui/styles.css';
+import { Button } from '@devex/ui';
+import { PageMasthead } from '@devex/ui/docs';
+
+export function App() {
+  return (
+    <>
+      <PageMasthead
+        crumb="Platform / Knowledge"
+        title="Rate limits"
+        purpose="What 429 means and how to retry."
+        owner="@platform-core"
+        verifiedAt="6d ago"
+        commit="4a91c02"
+        words={1240}
+        tokens={2100}
+      />
+      <Button intent="primary">Continue</Button>
+    </>
+  );
+}`}</pre>
   <table className={specimen.table}>
     <thead>
       <tr>
@@ -34,4 +72,7 @@ import { Foundation, specimen } from './Foundation';
       </tr>
     </tbody>
   </table>
-</Foundation>
+  <p className={specimen.why}>
+    Refused: deep-import src/, skip styles.css, or treat this catalog as the package.
+  </p>
+</div>

@@ -2,11 +2,24 @@
 
 React primitives and documentation components for dual-reader engineering docs. Storybook is the catalog. `dist` is what other apps install.
 
+Free to use under the [MIT License](./LICENSE).
+
+**Live catalog:** [https://luksha6.github.io/devex-ui/](https://luksha6.github.io/devex-ui/)
+
+Install in an app (not on the npm registry yet):
+
+```bash
+npm i github:luksha6/devex-ui
+npm i react react-dom
+```
+
+Run this repo locally:
+
 ```bash
 npm i && npm run storybook
 ```
 
-Catalog: [http://localhost:6006](http://localhost:6006). No password. Static: `npm run build-storybook`.
+Local catalog: [http://localhost:6006](http://localhost:6006). Static: `npm run build-storybook`.
 
 ```ts
 import '@devex/ui/styles.css';
