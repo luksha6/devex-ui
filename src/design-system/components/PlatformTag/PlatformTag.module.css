@@ -1,0 +1,44 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0 var(--space-2);
+  min-height: 22px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.icon {
+  display: block;
+}
+
+.tag[data-platform='pc'] {
+  color: #d8dbe2;
+  background: color-mix(in srgb, #6b7280 22%, transparent);
+  border: 1px solid color-mix(in srgb, #9ca3af 40%, transparent);
+}
+
+.tag[data-platform='playstation'] {
+  color: #9ec0ff;
+  background: color-mix(in srgb, #3b6fd4 22%, transparent);
+  border: 1px solid color-mix(in srgb, #3b6fd4 45%, transparent);
+}
+
+.tag[data-platform='xbox'] {
+  color: #8ee0a8;
+  background: color-mix(in srgb, #3a9b4a 22%, transparent);
+  border: 1px solid color-mix(in srgb, #3a9b4a 45%, transparent);
+}
+
+.tag[data-platform='switch'] {
+  color: #ff9aa8;
+  background: color-mix(in srgb, #e60012 18%, transparent);
+  border: 1px solid color-mix(in srgb, #e60012 40%, transparent);
+}
+
+[data-theme='light'] .tag[data-platform='pc'] {
+  color: #343a48;
+}

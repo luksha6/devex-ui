@@ -1,0 +1,48 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--space-2);
+  min-height: 20px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge[data-rarity='common'] {
+  color: var(--n-200);
+  background: color-mix(in srgb, var(--rarity-common) 22%, transparent);
+  border: 1px solid color-mix(in srgb, var(--rarity-common) 50%, transparent);
+}
+
+.badge[data-rarity='rare'] {
+  color: #c5ddf5;
+  background: color-mix(in srgb, var(--rarity-rare) 24%, transparent);
+  border: 1px solid color-mix(in srgb, var(--rarity-rare) 55%, transparent);
+}
+
+.badge[data-rarity='epic'] {
+  color: #e9d5ff;
+  background: color-mix(in srgb, var(--rarity-epic) 24%, transparent);
+  border: 1px solid color-mix(in srgb, var(--rarity-epic) 55%, transparent);
+}
+
+.badge[data-rarity='legendary'] {
+  color: var(--n-950);
+  background: var(--rarity-legendary);
+  border: 1px solid var(--rarity-legendary);
+  box-shadow: var(--rarity-legendary-glow);
+}
+
+[data-theme='light'] .badge[data-rarity='common'] {
+  color: var(--n-700);
+}
+
+[data-theme='light'] .badge[data-rarity='rare'] {
+  color: #1e4e7a;
+}
+
+[data-theme='light'] .badge[data-rarity='epic'] {
+  color: #6b21a8;
+}
