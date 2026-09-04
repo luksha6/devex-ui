@@ -6,7 +6,7 @@ alwaysApply: false
 
 # @devex/ui
 
-React 18/19 design system in `devex/`. Catalog: Storybook on port 6006. There is no Vue, no Tailwind, no utility classes. Hookful primitives are client components (`'use client'`). Load CSS yourself; the published JS entry does not apply it.
+React 18/19 design system. Catalog: Storybook on port 6006. There is no Vue, no Tailwind, no utility classes. Hookful primitives are client components (`'use client'`). Load CSS yourself; the published JS entry does not apply it.
 
 Load CSS once per app: `import '@devex/ui/styles.css'`. That file loads Onest (300/400/500). One family. `--font-mono` aliases `--font-sans`.
 
@@ -15,7 +15,7 @@ Load CSS once per app: `import '@devex/ui/styles.css'`. That file loads Onest (3
 Consumers must not ship raw HTML controls or hardcoded look:
 
 - No `<button>`, `<input>`, `<select>`, `<textarea>`, `<a>` for UI chrome. Use `Button`, `IconButton`, `Field`/`Input`, `Select`, `Textarea`, `TextLink`.
-- No hex, `rgb()`, or named colors outside `devex/src/tokens/`. Use `var(--color-*)`, `--st-*`, `--space-*`, `--font-*`, `--text-*`, `--duration-*`.
+- No hex, `rgb()`, or named colors outside `src/tokens/`. Use `var(--color-*)`, `--st-*`, `--space-*`, `--font-*`, `--text-*`, `--duration-*`.
 - No raw pixel spacing (`padding: 13px`, `gap: 6px`). Integer 4px scale only (`--space-1` = 4px). There is no `--space-5` or `--space-7`.
 - No arbitrary utilities (`p-[13px]`, `bg-[#22463d]`). This package is CSS modules + tokens.
 - Controls use `--radius-control`. Panels use `--radius-panel`. Icon buttons, chips, and avatars use `--radius-full`. Measure 68ch. Color is never the only channel — status, lifecycle, and uncertainty have words.
@@ -23,11 +23,11 @@ Consumers must not ship raw HTML controls or hardcoded look:
 - A toast cannot carry a long-running job. Use `RunStatus` + `Stream` + `ToolCall`. Copy/cite/approve stay on the control.
 - Honor `prefers-reduced-motion` (duration tokens already collapse). Fail is red and named in type.
 
-**Exception:** native elements are allowed only inside `devex/src/primitives/*` and `devex/src/docs/*` while implementing those primitives. Consumers never do this.
+**Exception:** native elements are allowed only inside `src/primitives/*` and `src/docs/*` while implementing those primitives. Consumers never do this.
 
 ## Imports
 
-Package exports: `.`, `./docs`, `./styles.css`, `./tokens.css`. Never deep-import `devex/src`, `dist/*.js` paths, or relative files across the package boundary.
+Package exports: `.`, `./docs`, `./styles.css`, `./tokens.css`. Never deep-import `src/`, `dist/*.js` paths, or relative files across the package boundary.
 
 ```ts
 import '@devex/ui/styles.css';
@@ -114,7 +114,7 @@ import { AudienceSwitch, RunStatus, type DocBlock } from '@devex/ui/docs';
 
 ## Verify
 
-After generating or changing UI, from `devex/`:
+After generating or changing UI:
 
 ```bash
 npm test && npm run lint && npm run build

@@ -3,7 +3,10 @@ name: Devex Storybook
 on:
   push:
     paths:
-      - 'devex/**'
+      - 'src/**'
+      - '.storybook/**'
+      - 'package.json'
+      - 'package-lock.json'
       - '.github/workflows/devex-storybook.yml'
   workflow_dispatch:
 
@@ -19,21 +22,18 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: devex
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: devex/package-lock.json
+          cache-dependency-path: package-lock.json
       - run: npm ci
       - run: npm run build-storybook
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: devex/storybook-static
+          path: storybook-static
 
   deploy:
     needs: build

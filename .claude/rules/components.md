@@ -154,12 +154,16 @@ function Queue() {
 <RadioGroup label="Audience" value={value} onChange={setValue}>
   <Radio value="human" label="Human" />
   <Radio value="agent" label="Agent" />
-</RadioGroup>
+</RadioGroup>;
 
 const blocks: DocBlock[] = [
-  { type: 'callout', kind: 'caution', text: 'Do not retry 409. It means the write already landed.' },
+  {
+    type: 'callout',
+    kind: 'caution',
+    text: 'Do not retry 409. It means the write already landed.',
+  },
 ];
-<AudienceSwitch value={audience} onChange={setAudience} blocks={blocks} />
+<AudienceSwitch value={audience} onChange={setAudience} blocks={blocks} />;
 ```
 
 When adding a primitive: `tsx` + CSS module + story + Vitest test, export from `src/index.ts`. Stories show states. Tests fail if you strip `aria-*`. No comments in polished source except brief interface JSDoc. Hex only in `src/tokens/`.

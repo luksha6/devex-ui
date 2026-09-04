@@ -1,6 +1,6 @@
 ---
 description: Devex dual-reader split and agent surfaces.
-globs: devex/**/*.{ts,tsx,mdx}
+globs: src/**/*.{ts,tsx,mdx}
 alwaysApply: false
 ---
 

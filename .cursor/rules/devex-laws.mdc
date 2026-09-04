@@ -1,6 +1,6 @@
 ---
 description: Devex visual laws — radius, space, color.
-globs: devex/**/*.{css,ts,tsx,mdx}
+globs: src/**/*.{css,ts,tsx,mdx}
 alwaysApply: false
 ---
 

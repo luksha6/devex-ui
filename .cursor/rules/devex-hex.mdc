@@ -1,9 +1,9 @@
 ---
 description: Hex only in Devex tokens. Components use CSS variables.
-globs: devex/**/*.{css,ts,tsx}
+globs: src/**/*.{css,ts,tsx}
 alwaysApply: false
 ---
 
 # Hex ban
 
-Hex, `rgb()`, and raw color literals belong in `devex/src/tokens/` only. Components use `var(--color-*)`, `--st-*`, `--space-*`. `npm run lint` in `devex/` runs `scripts/ban-hex.mjs`.
+Hex, `rgb()`, and raw color literals belong in `src/tokens/` only. Components use `var(--color-*)`, `--st-*`, `--space-*`. `npm run lint` runs `scripts/ban-hex.mjs`.
