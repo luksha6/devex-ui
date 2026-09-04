@@ -13,7 +13,7 @@ import {
 } from '@luksha6/devex-ui/docs';
 ```
 
-Primitives (`@luksha6/devex-ui`) must not import docs. Docs composites may import primitives.
+Primitives (`@luksha6/devex-ui`) must not import `@luksha6/devex-ui/docs`. Page and agent surfaces may import primitives.
 
 ## Product kit (`@luksha6/devex-ui`)
 
@@ -115,7 +115,7 @@ function Queue() {
 
 **`DataTable`** — `columns: { key, header, numeric?, mono?, sortable? }[]`, `rows: Record<string, ReactNode>[]`. `rowKey?`, `caption?`, `empty?`, `loading?` (`aria-busy`). Sorting: `sortKey`, `sortDir: 'asc' | 'desc'`, `onSort?(key)`. Only columns with `sortable: true` become sort buttons. Do not fake-sort React nodes inside the table; sort the row data you pass in. Already a panel — do not wrap it in another card.
 
-## Docs composites (`@luksha6/devex-ui/docs`)
+## Pages and agent surfaces (`@luksha6/devex-ui/docs`)
 
 **`toAgentMarkdown(blocks: readonly DocBlock[]): string`** — agent face.
 

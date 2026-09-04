@@ -6,7 +6,7 @@ Work on a branch. Do not commit unless asked. Do not skip hooks.
 
 Reviewers should reject a change that ships a story without a test, or a test without a story.
 
-- [ ] Primitive or docs composite: `tsx` + CSS module + story + Vitest test, exported from the correct barrel.
+- [ ] Primitive or page/agent surface: `tsx` + CSS module + story + Vitest test, exported from the correct barrel.
 - [ ] No hex outside `src/tokens/`. `npm run lint` includes the ban.
 - [ ] Controls use `--radius-control`. Panels use `--radius-panel`. Space snaps to the 4px scale.
 - [ ] Primary is brand green. Danger is red. Success is green. Status is labeled in type.

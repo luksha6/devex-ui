@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Dual reader
 
-`.` is product primitives. `./docs` is documentation composites. Primitives must not import docs.
+`.` is the product kit for developers. `./docs` is pages, dual reader, and agent runs. Primitives must not import that barrel.
 
 Human and Agent are two faces of one `DocBlock` AST. Human view is `renderHuman`. Agent view is `toAgentMarkdown`. `AudienceSwitch` takes that array. Agent view is not a second layout.
 

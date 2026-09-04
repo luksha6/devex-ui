@@ -6,7 +6,7 @@ alwaysApply: false
 
 # @luksha6/devex-ui
 
-React 18/19 design system. Catalog: Storybook on port 6006. There is no Vue, no Tailwind, no utility classes. Hookful primitives are client components (`'use client'`). Load CSS yourself; the published JS entry does not apply it.
+React 18/19 design system for developers and agents. Catalog: Storybook on port 6006. There is no Vue, no Tailwind, no utility classes. Hookful primitives are client components (`'use client'`). Load CSS yourself; the published JS entry does not apply it.
 
 Load CSS once per app: `import '@luksha6/devex-ui/styles.css'`. That file loads Onest (300/400/500). One family. `--font-mono` aliases `--font-sans`.
 
@@ -74,12 +74,12 @@ Primitives must not import `@luksha6/devex-ui/docs` or `src/docs/`.
 
 ## Disambiguation
 
-- **Alert** — in-page product status (ok/critical/dismiss). **Callout** — docs note/caution/agent-only. **Toast** — out-of-band after the user leaves the page.
-- **Table** — static cells. **DataTable** — sortable figures; opt in per column. **ParameterTable** — docs parameter rows.
+- **Alert** — in-page product status (ok/critical/dismiss). **Callout** — page note/caution/agent-only. **Toast** — out-of-band after the user leaves the page.
+- **Table** — static cells. **DataTable** — sortable figures; opt in per column. **ParameterTable** — named parameter rows.
 - **Field** — labeled text input. **SearchField** — search plus clear. **PropertyField** — label beside a control.
 - **Select** — one value, native. **MultiSelect** — many values, search + chips.
 
-## Docs composites (`@luksha6/devex-ui/docs`)
+## Pages and agent surfaces (`@luksha6/devex-ui/docs`)
 
 `PageMasthead`, `AudienceSwitch` (`value`, `onChange`, `blocks: DocBlock[]`), `CodeBlock` (`languages`, `testedAgainst?`, `testedAt?`), `ParameterTable`, `Callout` (`note` \| `caution` \| `agent-only`), `ResultRow` (hit \| `kind: 'withheld'`), `FreshnessStamp`, `SectionAnchor` + `citationUri`, `Stream`, `ToolCall`, `RunStatus`, `renderHuman`, `toAgentMarkdown` / `DocBlock`.
 

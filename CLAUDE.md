@@ -1,6 +1,6 @@
 # @luksha6/devex-ui
 
-React 18/19 design system for dual-reader engineering docs (human layout + agent markdown from one AST). Catalog is Storybook. Package name: `@luksha6/devex-ui`.
+React 18/19 design system for developers and agents (product kit plus human layout and agent markdown from one AST). Catalog is Storybook. Package name: `@luksha6/devex-ui`.
 
 Do not mention external employers or job applications in repository files.
 

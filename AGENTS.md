@@ -8,7 +8,7 @@ Do not mention external employers or job applications in this repository.
 
 - `src/tokens/` — the only hex. CSS variables for color, type, space, motion.
 - `src/primitives/` — product kit, exported from `@luksha6/devex-ui`.
-- `src/docs/` — documentation composites, exported from `@luksha6/devex-ui/docs`.
+- `src/docs/` — pages, dual reader, and agent runs, exported from `@luksha6/devex-ui/docs`.
 - `src/foundations/` — Storybook MDX. Rule, specimen, one sentence of why.
 - `src/styles/package.css` — tokens + reset. Apps load `@luksha6/devex-ui/styles.css`.
 
@@ -23,9 +23,9 @@ Do not mention external employers or job applications in this repository.
 7. Honor `prefers-reduced-motion`. Duration tokens already collapse under that media query.
 8. Run `npm test && npm run lint && npm run build`.
 
-## Add a docs composite
+## Add a page or agent surface
 
-Same as a primitive, under `src/docs/Name/`, export from `src/docs/index.ts`. Docs may import primitives. If the composite is an agent surface (stream, tool, run), put a specimen on `Guides/Agent surfaces` and say what you refused: toast-as-progress, spinner that never ends. Fail is red and named in type.
+Same as a primitive, under `src/docs/Name/`, export from `src/docs/index.ts`. These modules may import primitives. If the surface is a run (stream, tool, status), put a specimen on `Guides/Agent surfaces` and say what you refused: toast-as-progress, spinner that never ends. Fail is red and named in type.
 
 ## Tokens
 

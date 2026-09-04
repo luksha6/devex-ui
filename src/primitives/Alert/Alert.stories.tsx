@@ -14,7 +14,7 @@ const meta: Meta<typeof Alert> = {
     docs: {
       description: {
         component:
-          'In-page status. Note is default. Ok is green. Caution is amber. Critical is red. Callout is the docs composite. Do not use Alert for Copied.',
+          'In-page status. Note is default. Ok is green. Caution is amber. Critical is red. Callout is the page note. Do not use Alert for Copied.',
       },
     },
   },
