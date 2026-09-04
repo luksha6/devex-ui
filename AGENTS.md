@@ -1,6 +1,6 @@
 # Agents
 
-This package is `@luksha6/devex-ui`. The catalog is Storybook. Consumers import `dist`, not `src/`.
+This package is `@luksha6/devex-ui`. Product kit for apps. Write a page once: people get layout, agents get markdown. UI for watching a run. The catalog is Storybook. Consumers import `dist`, not `src/`.
 
 Do not mention external employers or job applications in this repository.
 
@@ -8,7 +8,7 @@ Do not mention external employers or job applications in this repository.
 
 - `src/tokens/` — the only hex. CSS variables for color, type, space, motion.
 - `src/primitives/` — product kit, exported from `@luksha6/devex-ui`.
-- `src/docs/` — pages, dual reader, and agent runs, exported from `@luksha6/devex-ui/docs`.
+- `src/docs/` — pages, dual reader, and run UI, exported from `@luksha6/devex-ui/docs`.
 - `src/foundations/` — Storybook MDX. Rule, specimen, one sentence of why.
 - `src/styles/package.css` — tokens + reset. Apps load `@luksha6/devex-ui/styles.css`.
 

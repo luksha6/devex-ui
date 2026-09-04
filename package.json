@@ -1,7 +1,7 @@
 {
   "name": "@luksha6/devex-ui",
-  "version": "0.1.1",
-  "description": "React design system for developers and agents. Product kit and layout for people. Markdown and run surfaces for agents.",
+  "version": "0.1.2",
+  "description": "React design system. Product kit for apps. Write a page once: people get layout, agents get markdown. UI for watching a run.",
   "keywords": [
     "design-system",
     "react",

@@ -1,5 +1,7 @@
 # @luksha6/devex-ui components
 
+React design system. Product kit for apps. Write a page once: people get layout, agents get markdown. UI for watching a run.
+
 Consumers import from package barrels. Do not invent compound APIs that are not listed here.
 
 ```ts
@@ -13,7 +15,7 @@ import {
 } from '@luksha6/devex-ui/docs';
 ```
 
-Primitives (`@luksha6/devex-ui`) must not import `@luksha6/devex-ui/docs`. Page and agent surfaces may import primitives.
+Primitives (`@luksha6/devex-ui`) must not import `@luksha6/devex-ui/docs`. Pages, dual reader, and run UI may import primitives.
 
 ## Product kit (`@luksha6/devex-ui`)
 

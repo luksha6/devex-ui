@@ -6,7 +6,7 @@ alwaysApply: false
 
 # @luksha6/devex-ui
 
-React 18/19 design system for developers and agents. Catalog: Storybook on port 6006. There is no Vue, no Tailwind, no utility classes. Hookful primitives are client components (`'use client'`). Load CSS yourself; the published JS entry does not apply it.
+React 18/19 design system. Product kit for apps. Write a page once: people get layout, agents get markdown. UI for watching a run. Catalog: Storybook on port 6006. There is no Vue, no Tailwind, no utility classes. Hookful primitives are client components (`'use client'`). Load CSS yourself; the published JS entry does not apply it.
 
 Load CSS once per app: `import '@luksha6/devex-ui/styles.css'`. That file loads Onest (300/400/500). One family. `--font-mono` aliases `--font-sans`.
 

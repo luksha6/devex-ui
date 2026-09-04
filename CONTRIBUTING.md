@@ -1,5 +1,7 @@
 # Contributing to @luksha6/devex-ui
 
+React design system. Product kit for apps. Write a page once: people get layout, agents get markdown. UI for watching a run.
+
 Work on a branch. Do not commit unless asked. Do not skip hooks.
 
 ## Review checklist

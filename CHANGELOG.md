@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2
+
+- Public copy matches the product: product kit, dual reader, run UI for people watching a job.
+
 ## 0.1.1
 
 - Public copy: a kit for developers and agents, not docs only.
