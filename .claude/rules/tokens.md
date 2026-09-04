@@ -1,8 +1,8 @@
-# @devex/ui tokens
+# @luksha6/devex-ui tokens
 
 There is no Tailwind and no framework utility classes. Consumers and components use CSS custom properties. Hex, `rgb()`, and raw color literals belong in `src/tokens/` only. `npm run lint` runs `scripts/ban-hex.mjs`.
 
-Load `@devex/ui/styles.css` once (tokens + reset + compiled modules). `@devex/ui/tokens.css` is the token file alone if you need variables without compiled modules.
+Load `@luksha6/devex-ui/styles.css` once (tokens + reset + compiled modules). `@luksha6/devex-ui/tokens.css` is the token file alone if you need variables without compiled modules.
 
 Onest is the only family. `styles.css` / `tokens.css` load 300/400/500. Prefer `--font-sans` in CSS. `--font-heading`, `--font-body`, and `--font-mono` alias it.
 

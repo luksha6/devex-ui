@@ -13,7 +13,8 @@ const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
   },
-  managerHead: (head) => head.replace(/<title>[\s\S]*?<\/title>/, '<title>@devex/ui</title>'),
+  managerHead: (head) =>
+    head.replace(/<title>[\s\S]*?<\/title>/, '<title>@luksha6/devex-ui</title>'),
 };
 
 export default config;

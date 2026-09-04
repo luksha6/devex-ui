@@ -1,4 +1,4 @@
-# Contributing to @devex/ui
+# Contributing to @luksha6/devex-ui
 
 Work on a branch. Do not commit unless asked. Do not skip hooks.
 

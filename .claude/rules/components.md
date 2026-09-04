@@ -1,16 +1,21 @@
-# @devex/ui components
+# @luksha6/devex-ui components
 
 Consumers import from package barrels. Do not invent compound APIs that are not listed here.
 
 ```ts
-import '@devex/ui/styles.css';
-import { Button, Dialog, Field, Radio, RadioGroup, ToastProvider } from '@devex/ui';
-import { AudienceSwitch, renderHuman, toAgentMarkdown, type DocBlock } from '@devex/ui/docs';
+import '@luksha6/devex-ui/styles.css';
+import { Button, Dialog, Field, Radio, RadioGroup, ToastProvider } from '@luksha6/devex-ui';
+import {
+  AudienceSwitch,
+  renderHuman,
+  toAgentMarkdown,
+  type DocBlock,
+} from '@luksha6/devex-ui/docs';
 ```
 
-Primitives (`@devex/ui`) must not import docs. Docs composites may import primitives.
+Primitives (`@luksha6/devex-ui`) must not import docs. Docs composites may import primitives.
 
-## Product kit (`@devex/ui`)
+## Product kit (`@luksha6/devex-ui`)
 
 ### Actions
 
@@ -110,7 +115,7 @@ function Queue() {
 
 **`DataTable`** — `columns: { key, header, numeric?, mono?, sortable? }[]`, `rows: Record<string, ReactNode>[]`. `rowKey?`, `caption?`, `empty?`, `loading?` (`aria-busy`). Sorting: `sortKey`, `sortDir: 'asc' | 'desc'`, `onSort?(key)`. Only columns with `sortable: true` become sort buttons. Do not fake-sort React nodes inside the table; sort the row data you pass in. Already a panel — do not wrap it in another card.
 
-## Docs composites (`@devex/ui/docs`)
+## Docs composites (`@luksha6/devex-ui/docs`)
 
 **`toAgentMarkdown(blocks: readonly DocBlock[]): string`** — agent face.
 

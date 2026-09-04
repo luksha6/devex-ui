@@ -6,7 +6,7 @@ addons.setConfig({
   showPanel: false,
   theme: create({
     base: 'light',
-    brandTitle: '@devex/ui',
+    brandTitle: '@luksha6/devex-ui',
     brandUrl: 'https://luksha6.github.io/devex-ui/',
     colorPrimary: '#22463d',
     colorSecondary: '#22463d',

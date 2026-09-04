@@ -1,6 +1,6 @@
-# @devex/ui
+# @luksha6/devex-ui
 
-React 18/19 design system for dual-reader engineering docs (human layout + agent markdown from one AST). Catalog is Storybook. Package name: `@devex/ui`.
+React 18/19 design system for dual-reader engineering docs (human layout + agent markdown from one AST). Catalog is Storybook. Package name: `@luksha6/devex-ui`.
 
 Do not mention external employers or job applications in repository files.
 
@@ -18,7 +18,7 @@ After generating UI or changing the library, run `npm test && npm run lint && np
 
 ## Laws
 
-- Import `@devex/ui` and `@devex/ui/docs`. Never deep-import `src/` or `dist/` files. Load `@devex/ui/styles.css` once. Onest ships with that file.
+- Import `@luksha6/devex-ui` and `@luksha6/devex-ui/docs`. Never deep-import `src/` or `dist/` files. Load `@luksha6/devex-ui/styles.css` once. Onest ships with that file.
 - Consumers: no raw `<button>`, `<input>`, `<select>`, `<textarea>` for chrome. No hex, raw `px` spacing, Tailwind, or `p-[13px]`. Tokens only (`var(--color-*)`, `--space-*`). Controls `--radius-control`. Panels `--radius-panel`. 4px space. 68ch.
 - Native HTML is allowed only inside `src/primitives` and `src/docs` while implementing those modules.
 - Primary = brand green. Danger = red. Success = green. Warning = amber. Deprecated = gray. Color is never the only channel.

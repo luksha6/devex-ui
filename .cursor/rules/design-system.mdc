@@ -1,14 +1,14 @@
 ---
-description: Consume @devex/ui — tokens, package imports, and component APIs. No raw HTML controls or hardcoded styles.
+description: Consume @luksha6/devex-ui — tokens, package imports, and component APIs. No raw HTML controls or hardcoded styles.
 globs: "**/*.{ts,tsx,vue,jsx,js,css,scss}"
 alwaysApply: false
 ---
 
-# @devex/ui
+# @luksha6/devex-ui
 
 React 18/19 design system. Catalog: Storybook on port 6006. There is no Vue, no Tailwind, no utility classes. Hookful primitives are client components (`'use client'`). Load CSS yourself; the published JS entry does not apply it.
 
-Load CSS once per app: `import '@devex/ui/styles.css'`. That file loads Onest (300/400/500). One family. `--font-mono` aliases `--font-sans`.
+Load CSS once per app: `import '@luksha6/devex-ui/styles.css'`. That file loads Onest (300/400/500). One family. `--font-mono` aliases `--font-sans`.
 
 ## Architectural laws
 
@@ -30,14 +30,14 @@ Consumers must not ship raw HTML controls or hardcoded look:
 Package exports: `.`, `./docs`, `./styles.css`, `./tokens.css`. Never deep-import `src/`, `dist/*.js` paths, or relative files across the package boundary.
 
 ```ts
-import '@devex/ui/styles.css';
-import { Button, Dialog, Field } from '@devex/ui';
-import { PageMasthead, renderHuman, Stream, toAgentMarkdown } from '@devex/ui/docs';
+import '@luksha6/devex-ui/styles.css';
+import { Button, Dialog, Field } from '@luksha6/devex-ui';
+import { PageMasthead, renderHuman, Stream, toAgentMarkdown } from '@luksha6/devex-ui/docs';
 ```
 
-Primitives must not import `@devex/ui/docs` or `src/docs/`.
+Primitives must not import `@luksha6/devex-ui/docs` or `src/docs/`.
 
-## Component index (`@devex/ui`)
+## Component index (`@luksha6/devex-ui`)
 
 | Component | Role | Variants / props |
 | --- | --- | --- |
@@ -79,7 +79,7 @@ Primitives must not import `@devex/ui/docs` or `src/docs/`.
 - **Field** — labeled text input. **SearchField** — search plus clear. **PropertyField** — label beside a control.
 - **Select** — one value, native. **MultiSelect** — many values, search + chips.
 
-## Docs composites (`@devex/ui/docs`)
+## Docs composites (`@luksha6/devex-ui/docs`)
 
 `PageMasthead`, `AudienceSwitch` (`value`, `onChange`, `blocks: DocBlock[]`), `CodeBlock` (`languages`, `testedAgainst?`, `testedAt?`), `ParameterTable`, `Callout` (`note` \| `caution` \| `agent-only`), `ResultRow` (hit \| `kind: 'withheld'`), `FreshnessStamp`, `SectionAnchor` + `citationUri`, `Stream`, `ToolCall`, `RunStatus`, `renderHuman`, `toAgentMarkdown` / `DocBlock`.
 
@@ -93,15 +93,15 @@ Color: `--color-bg`, `--color-surface`, `--color-text`, `--color-text-muted`, `-
 
 ```tsx
 // BAD — raw control, hex, magic pixels, deep import, invented compound dialog, dual-source docs
-import { Button } from '@devex/ui/src/primitives/Button/Button';
+import { Button } from '@luksha6/devex-ui/src/primitives/Button/Button';
 <button style={{ background: '#22463d', padding: '13px' }}>Save</button>;
 useToast().show({ title: 'Reindex running…' });
 <AudienceSwitch agentSource={md}>{human}</AudienceSwitch>
 
 // GOOD
-import '@devex/ui/styles.css';
-import { Button, Dialog, Field, ToastProvider, useToast } from '@devex/ui';
-import { AudienceSwitch, RunStatus, type DocBlock } from '@devex/ui/docs';
+import '@luksha6/devex-ui/styles.css';
+import { Button, Dialog, Field, ToastProvider, useToast } from '@luksha6/devex-ui';
+import { AudienceSwitch, RunStatus, type DocBlock } from '@luksha6/devex-ui/docs';
 
 <Field label="Corpus" value={id} onChange={…} />
 <Button intent="primary">Verify</Button>

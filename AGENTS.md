@@ -1,23 +1,23 @@
 # Agents
 
-This package is `@devex/ui`. The catalog is Storybook. Consumers import `dist`, not `src/`.
+This package is `@luksha6/devex-ui`. The catalog is Storybook. Consumers import `dist`, not `src/`.
 
 Do not mention external employers or job applications in this repository.
 
 ## Layout
 
 - `src/tokens/` — the only hex. CSS variables for color, type, space, motion.
-- `src/primitives/` — product kit, exported from `@devex/ui`.
-- `src/docs/` — documentation composites, exported from `@devex/ui/docs`.
+- `src/primitives/` — product kit, exported from `@luksha6/devex-ui`.
+- `src/docs/` — documentation composites, exported from `@luksha6/devex-ui/docs`.
 - `src/foundations/` — Storybook MDX. Rule, specimen, one sentence of why.
-- `src/styles/package.css` — tokens + reset. Apps load `@devex/ui/styles.css`.
+- `src/styles/package.css` — tokens + reset. Apps load `@luksha6/devex-ui/styles.css`.
 
 ## Add a primitive
 
 1. `src/primitives/Name/Name.tsx` + `Name.module.css`.
 2. `Name.stories.tsx` and `Name.test.tsx` in the same folder. Stories show states. Tests fail if you strip `aria-*`.
 3. Export from `src/index.ts`.
-4. Do not import `@devex/ui/docs` or `src/docs/`.
+4. Do not import `@luksha6/devex-ui/docs` or `src/docs/`.
 5. No hex. Controls use `--radius-control`. Panels use `--radius-panel`. No comments in polished source.
 6. Primary is brand green. Danger is red. Success is green. Color is never the only channel.
 7. Honor `prefers-reduced-motion`. Duration tokens already collapse under that media query.

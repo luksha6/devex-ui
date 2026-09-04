@@ -1,4 +1,4 @@
-# @devex/ui
+# @luksha6/devex-ui
 
 React design system for engineering docs. You write the page once. Humans get layout. Agents get markdown.
 
@@ -6,32 +6,32 @@ MIT. Use it for anything.
 
 - Catalog: [https://luksha6.github.io/devex-ui/](https://luksha6.github.io/devex-ui/)
 - Source: [https://github.com/luksha6/devex-ui](https://github.com/luksha6/devex-ui)
-- npm: [@devex/ui](https://www.npmjs.com/package/@devex/ui)
+- npm: [@luksha6/devex-ui](https://www.npmjs.com/package/@luksha6/devex-ui)
 
-The GitHub repo is `luksha6/devex-ui`. The package you install is `@devex/ui`. Same project, two names.
+The GitHub repo and the npm package are both `luksha6/devex-ui`.
 
 ## Install
 
 ```bash
-npm i @devex/ui
+npm i @luksha6/devex-ui
 ```
 
 React 18 or 19 is a peer. Install that yourself.
 
 ```ts
-import '@devex/ui/styles.css';
-import { Button } from '@devex/ui';
-import { PageMasthead, Stream } from '@devex/ui/docs';
+import '@luksha6/devex-ui/styles.css';
+import { Button } from '@luksha6/devex-ui';
+import { PageMasthead, Stream } from '@luksha6/devex-ui/docs';
 ```
 
 Load `styles.css` once. The JS entry does not apply CSS. Overlay primitives (`Dialog`, `Toast`, `Tooltip`) are client components. Do not import files from `src/`.
 
-| Export                 | What you get                                                                                   |
-| ---------------------- | ---------------------------------------------------------------------------------------------- |
-| `@devex/ui/styles.css` | Tokens, reset, compiled modules, Onest. Required once per app.                                 |
-| `@devex/ui`            | Product primitives: actions, forms, overlays, data, type                                       |
-| `@devex/ui/docs`       | Documentation composites, including agent run surfaces, plus `renderHuman` / `toAgentMarkdown` |
-| `@devex/ui/tokens.css` | Token file only, if you need variables without the compiled modules                            |
+| Export                         | What you get                                                                                   |
+| ------------------------------ | ---------------------------------------------------------------------------------------------- |
+| `@luksha6/devex-ui/styles.css` | Tokens, reset, compiled modules, Onest. Required once per app.                                 |
+| `@luksha6/devex-ui`            | Product primitives: actions, forms, overlays, data, type                                       |
+| `@luksha6/devex-ui/docs`       | Documentation composites, including agent run surfaces, plus `renderHuman` / `toAgentMarkdown` |
+| `@luksha6/devex-ui/tokens.css` | Token file only, if you need variables without the compiled modules                            |
 
 ## Work on this repo
 

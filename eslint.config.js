@@ -31,7 +31,7 @@ export default tseslint.config(
           patterns: [
             {
               group: ['**/docs/**', '../docs/**', '../../docs/**'],
-              message: 'Primitives must not import @devex/ui/docs.',
+              message: 'Primitives must not import @luksha6/devex-ui/docs.',
             },
           ],
         },
