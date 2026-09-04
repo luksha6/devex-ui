@@ -1,7 +1,7 @@
 {
   "name": "@devex/ui",
   "version": "0.1.0",
-  "description": "React primitives and documentation components.",
+  "description": "React design system for engineering docs. Human layout and agent markdown from the same source.",
   "license": "MIT",
   "repository": {
     "type": "git",

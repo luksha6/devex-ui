@@ -1,25 +1,22 @@
 # @devex/ui
 
-React primitives and documentation components for dual-reader engineering docs. Storybook is the catalog. `dist` is what other apps install.
+React design system for engineering docs. You write the page once. Humans get layout. Agents get markdown.
 
-Free to use under the [MIT License](./LICENSE).
+MIT. Use it for anything.
 
-**Live catalog:** [https://luksha6.github.io/devex-ui/](https://luksha6.github.io/devex-ui/)
+- Catalog: [https://luksha6.github.io/devex-ui/](https://luksha6.github.io/devex-ui/)
+- Source: [https://github.com/luksha6/devex-ui](https://github.com/luksha6/devex-ui)
+- npm: [@devex/ui](https://www.npmjs.com/package/@devex/ui)
 
-Install in an app (not on the npm registry yet):
+The GitHub repo is `luksha6/devex-ui`. The package you install is `@devex/ui`. Same project, two names.
 
-```bash
-npm i github:luksha6/devex-ui
-npm i react react-dom
-```
-
-Run this repo locally:
+## Install
 
 ```bash
-npm i && npm run storybook
+npm i @devex/ui
 ```
 
-Local catalog: [http://localhost:6006](http://localhost:6006). Static: `npm run build-storybook`.
+React 18 or 19 is a peer. Install that yourself.
 
 ```ts
 import '@devex/ui/styles.css';
@@ -27,14 +24,22 @@ import { Button } from '@devex/ui';
 import { PageMasthead, Stream } from '@devex/ui/docs';
 ```
 
-Load `styles.css` once. The JS entry does not apply CSS. Overlay primitives (`Dialog`, `Toast`, `Tooltip`) are client components. Do not deep-import `src/`.
+Load `styles.css` once. The JS entry does not apply CSS. Overlay primitives (`Dialog`, `Toast`, `Tooltip`) are client components. Do not import files from `src/`.
 
-| Export                 | Contents                                                                                       |
+| Export                 | What you get                                                                                   |
 | ---------------------- | ---------------------------------------------------------------------------------------------- |
-| `@devex/ui/styles.css` | Tokens, reset, compiled modules. Required once per app.                                        |
+| `@devex/ui/styles.css` | Tokens, reset, compiled modules, Onest. Required once per app.                                 |
 | `@devex/ui`            | Product primitives: actions, forms, overlays, data, type                                       |
 | `@devex/ui/docs`       | Documentation composites, including agent run surfaces, plus `renderHuman` / `toAgentMarkdown` |
 | `@devex/ui/tokens.css` | Token file only, if you need variables without the compiled modules                            |
+
+## Work on this repo
+
+```bash
+npm i && npm run storybook
+```
+
+Local catalog: [http://localhost:6006](http://localhost:6006). Static build: `npm run build-storybook`.
 
 ## Laws
 
@@ -44,7 +49,7 @@ Load `styles.css` once. The JS entry does not apply CSS. Overlay primitives (`Di
 - Color is never the only channel. Lifecycle and failure are labeled in type.
 - Hex lives in `src/tokens/`. `scripts/ban-hex.mjs` fails the lint if a component invents one.
 - `.` is the product kit. `./docs` is documentation composites. Primitives must not import docs.
-- One AST, two faces: Human layout and Agent markdown from the same blocks.
+- Human layout and agent markdown come from the same blocks.
 - Stories are not tests. Vitest holds the contract. Storybook shows states.
 - Motion is state change. `prefers-reduced-motion` zeros duration tokens and skips loops.
 - A toast cannot carry a long-running job. Latency, stream, tools, and failure live on the run.
