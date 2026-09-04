@@ -1,0 +1,72 @@
+/* Palette — cool charcoal, dark-first. Raw ramps stay constant; semantic
+   tokens on :root remap under [data-theme="light"]. */
+
+:root {
+  --violet-700: #5b3fd1;
+  --violet-600: #7c5cfc;
+  --violet-500: #9b81ff;
+
+  --cyan-500: #22d3ee;
+
+  --gold-500: #f5b942;
+
+  --danger-500: #e5484d;
+  --danger-600: #c4383d;
+
+  --n-950: #0b0d12;
+  --n-900: #12151c;
+  --n-800: #1a1e28;
+  --n-700: #252a36;
+  --n-600: #343a48;
+  --n-500: #4a5160;
+  --n-400: #6b7280;
+  --n-300: #8b92a0;
+  --n-200: #b4b9c4;
+  --n-100: #d8dbe2;
+  --n-050: #eeeff3;
+  --n-000: #f7f8fa;
+
+  /* Rarity is the system's signature scale — four named bands, not a
+     generic rainbow. Common sits on the neutral ramp; legendary reuses gold. */
+  --rarity-common: #8a8f98;
+  --rarity-rare: #4e88c7;
+  --rarity-epic: #a855f7;
+  --rarity-legendary: #f5b942;
+
+  --rarity-legendary-glow: 0 0 16px color-mix(in srgb, var(--rarity-legendary) 42%, transparent);
+  --rarity-epic-glow: 0 0 12px color-mix(in srgb, var(--rarity-epic) 28%, transparent);
+
+  --color-bg: var(--n-950);
+  --color-surface: var(--n-900);
+  --color-surface-elevated: var(--n-800);
+  --color-border: var(--n-700);
+  --color-border-strong: var(--n-600);
+  --color-text: var(--n-050);
+  --color-text-muted: var(--n-300);
+  --color-text-subtle: var(--n-400);
+  --color-primary: var(--violet-600);
+  --color-primary-hover: var(--violet-500);
+  --color-primary-active: var(--violet-700);
+  --color-primary-text: #ffffff;
+  --color-accent: var(--cyan-500);
+  --color-danger: var(--danger-500);
+  --color-danger-hover: var(--danger-600);
+  --color-focus: var(--violet-500);
+  --color-overlay: color-mix(in srgb, var(--n-950) 72%, transparent);
+  --color-online: #34d399;
+  --color-offline: var(--n-500);
+}
+
+[data-theme='light'] {
+  --color-bg: var(--n-050);
+  --color-surface: var(--n-000);
+  --color-surface-elevated: #ffffff;
+  --color-border: var(--n-100);
+  --color-border-strong: var(--n-200);
+  --color-text: var(--n-900);
+  --color-text-muted: var(--n-500);
+  --color-text-subtle: var(--n-400);
+  --color-primary-text: #ffffff;
+  --color-overlay: color-mix(in srgb, var(--n-950) 48%, transparent);
+  --color-focus: var(--violet-600);
+}
