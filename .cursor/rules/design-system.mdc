@@ -56,6 +56,7 @@ Primitives must not import `@luksha6/devex-ui/docs` or `src/docs/`.
 | `SegmentedControl` | Exclusive options | `label`, `options`, `value`, `onChange`. Home/End move selection |
 | `Dialog` | Modal | **Not compound.** `open`, `onClose`, `title`, `children`, `actions?`, `width`: sm \| md. Bottom sheet under 640px. No `Dialog.Header` |
 | `Drawer` | Sheet | `open`, `onClose`, `title`, `children`, `actions?`, `side`: bottom \| end. End becomes bottom under 640px |
+| `Menu` | Actions on a control | **Not compound.** `label`, `items: { id, label, onSelect, disabled?, danger? }[]`, `open`, `onOpenChange`, one trigger child. `align`: start \| end. Escape and outside click close. No `Menu.Item` |
 | `Alert` | Inline status | `kind`: note \| ok \| caution \| critical. Kind word stays visible; `title?` is extra. `onDismiss?` |
 | `Tooltip` | Description | `content` + single element child. `aria-describedby` only while open |
 | `ToastProvider` / `useToast` | Out-of-band | Mount `<ToastProvider>` around the click target. Call `useToast().show`. Throws without a provider. `Toaster` is the same export. Not for Copied, Cite, Approve, or job progress |
@@ -77,7 +78,7 @@ Primitives must not import `@luksha6/devex-ui/docs` or `src/docs/`.
 - **Alert** — in-page product status (ok/critical/dismiss). **Callout** — page note/caution/agent-only. **Toast** — out-of-band after the user leaves the page.
 - **Table** — static cells. **DataTable** — sortable figures; opt in per column. **ParameterTable** — named parameter rows.
 - **Field** — labeled text input. **SearchField** — search plus clear. **PropertyField** — label beside a control.
-- **Select** — one value, native. **MultiSelect** — many values, search + chips.
+- **Select** — one value, native. **MultiSelect** — many values, search + chips. **Menu** — actions on a control, not a value.
 
 ## Pages and agent surfaces (`@luksha6/devex-ui/docs`)
 

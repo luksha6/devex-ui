@@ -41,7 +41,7 @@ const STEPS = [
   },
 ];
 
-function TypeScale() {
+export function TypographyTokens() {
   return (
     <table className={specimen.table}>
       <thead>
@@ -75,12 +75,12 @@ function TypeScale() {
   );
 }
 
-const meta: Meta = {
+const meta: Meta<typeof TypographyTokens> = {
   title: 'Tokens/Typography',
-  render: () => <TypeScale />,
+  component: TypographyTokens,
 };
 
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<typeof TypographyTokens>;
 
 export const ScaleTable: Story = {};

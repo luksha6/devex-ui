@@ -12,6 +12,7 @@ addons.setConfig({
     colorSecondary: '#22463d',
     appBg: '#fdfdfd',
     appContentBg: '#fdfdfd',
+    appPreviewBg: '#fdfdfd',
     appBorderColor: '#e3e4e6',
     appBorderRadius: 12,
     textColor: '#1f2937',

@@ -1,13 +1,39 @@
 import { Meta } from '@storybook/blocks';
-import { Foundation } from './Foundation';
+import { Foundation, specimen } from './Foundation';
 import { MotionDemo } from './MotionDemo';
 
 <Meta title="Foundations/Motion" />
 
 <Foundation
   title="Motion"
-  rule="Focus-visible is a 2px primary ring that follows the control radius. Fields take it on the border — no offset gutter. 120–180ms opacity on state change. prefers-reduced-motion zeros the duration tokens."
+  rule="Focus-visible is a 2px primary ring that follows the control radius. Filled controls keep it tight. Outline and ghost use a 2px offset. Fields take it on the border. 120–180ms on state change. prefers-reduced-motion zeros the duration tokens."
   why="Motion marks a state change. Copy, cite, and approve stay on the control. Toast is for out-of-band work, not Copied."
 >
+  <table className={specimen.table}>
+    <thead>
+      <tr>
+        <th>Token</th>
+        <th>Time</th>
+        <th>Use</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className={specimen.mono}>--duration-fast</td>
+        <td>120ms</td>
+        <td>Hover, focus paint</td>
+      </tr>
+      <tr>
+        <td className={specimen.mono}>--duration-base</td>
+        <td>180ms</td>
+        <td>Open, close, expand</td>
+      </tr>
+      <tr>
+        <td className={specimen.mono}>--duration-loop</td>
+        <td>800ms</td>
+        <td>Caret, drip. Skipped when reduced.</td>
+      </tr>
+    </tbody>
+  </table>
   <MotionDemo />
 </Foundation>

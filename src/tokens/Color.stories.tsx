@@ -37,7 +37,7 @@ function Swatches(items: { name: string; token: string }[]) {
   );
 }
 
-function Ramp() {
+export function ColorTokens() {
   return (
     <>
       <p className={specimen.kicker}>Action</p>
@@ -48,12 +48,12 @@ function Ramp() {
   );
 }
 
-const meta: Meta = {
+const meta: Meta<typeof ColorTokens> = {
   title: 'Tokens/Color',
-  render: () => <Ramp />,
+  component: ColorTokens,
 };
 
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<typeof ColorTokens>;
 
 export const RampTable: Story = {};

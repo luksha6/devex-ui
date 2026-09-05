@@ -6,7 +6,18 @@ import { acquireDialogLock, releaseDialogLock } from './dialogLock';
 const FOCUSABLE =
   'a[href]:not([tabindex="-1"]), button:not([disabled]):not([tabindex="-1"]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
-export function useOverlayLock(panelRef: RefObject<HTMLElement | null>, onClose: () => void) {
+export function useOverlayLock(
+  panelRef: RefObject<HTMLElement | null>,
+  onClose: () => void,
+  options: {
+    trap?: boolean;
+    lock?: boolean;
+    rootRef?: RefObject<HTMLElement | null>;
+  } = {},
+) {
+  const trap = options.trap ?? true;
+  const lock = options.lock ?? true;
+  const rootRef = options.rootRef;
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
 
@@ -16,7 +27,9 @@ export function useOverlayLock(panelRef: RefObject<HTMLElement | null>, onClose:
     const panel = panelRef.current;
     const focusables = panel ? Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE)) : [];
     (focusables[0] ?? panel)?.focus();
-    acquireDialogLock();
+    if (lock) {
+      acquireDialogLock();
+    }
 
     function nodes() {
       return panel ? Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE)) : [];
@@ -28,7 +41,11 @@ export function useOverlayLock(panelRef: RefObject<HTMLElement | null>, onClose:
         onCloseRef.current();
         return;
       }
-      if (event.key !== 'Tab' || !panel) {
+      if (event.key === 'Tab' && !trap) {
+        onCloseRef.current();
+        return;
+      }
+      if (event.key !== 'Tab' || !panel || !trap) {
         return;
       }
       const list = nodes();
@@ -49,21 +66,35 @@ export function useOverlayLock(panelRef: RefObject<HTMLElement | null>, onClose:
     }
 
     function onFocusIn(event: FocusEvent) {
-      if (!panel || panel.contains(event.target as Node)) {
+      if (!trap || !panel || panel.contains(event.target as Node)) {
         return;
       }
       const list = nodes();
       (list[0] ?? panel).focus();
     }
 
+    function onPointerDown(event: PointerEvent) {
+      const root = rootRef?.current ?? panel;
+      if (!root || root.contains(event.target as Node)) {
+        return;
+      }
+      onCloseRef.current();
+    }
+
     document.addEventListener('keydown', onKeyDown);
     document.addEventListener('focusin', onFocusIn);
+    if (!trap) {
+      document.addEventListener('pointerdown', onPointerDown);
+    }
 
     return () => {
       document.removeEventListener('keydown', onKeyDown);
       document.removeEventListener('focusin', onFocusIn);
-      releaseDialogLock();
+      document.removeEventListener('pointerdown', onPointerDown);
+      if (lock) {
+        releaseDialogLock();
+      }
       previouslyFocused?.focus();
     };
-  }, [panelRef]);
+  }, [lock, panelRef, rootRef, trap]);
 }

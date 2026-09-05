@@ -10,7 +10,7 @@ const STEPS = [
   { name: '--space-8', px: 32 },
 ];
 
-function Scale() {
+export function SpaceTokens() {
   return (
     <table className={specimen.table}>
       <thead>
@@ -27,12 +27,16 @@ function Scale() {
             <td className={specimen.mono}>{step.px}</td>
             <td>
               <div
-                className={specimen.chip}
-                style={{
-                  width: `var(${step.name})`,
-                  height: 16,
-                  background: 'var(--color-text)',
-                }}
+                className={`${specimen.bar} ${
+                  {
+                    4: specimen.w1,
+                    8: specimen.w2,
+                    12: specimen.w3,
+                    16: specimen.w4,
+                    24: specimen.w6,
+                    32: specimen.w8,
+                  }[step.px]
+                }`}
               />
             </td>
           </tr>
@@ -42,12 +46,12 @@ function Scale() {
   );
 }
 
-const meta: Meta = {
+const meta: Meta<typeof SpaceTokens> = {
   title: 'Tokens/Space',
-  render: () => <Scale />,
+  component: SpaceTokens,
 };
 
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<typeof SpaceTokens>;
 
 export const ScaleTable: Story = {};

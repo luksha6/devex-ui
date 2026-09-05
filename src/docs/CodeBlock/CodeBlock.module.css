@@ -1,9 +1,7 @@
 .block {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  border-top: var(--border-width) solid var(--color-divider);
-  border-bottom: var(--border-width) solid var(--color-divider);
+  gap: var(--space-2);
 }
 
 .toolbar {
@@ -11,7 +9,6 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-2) 0;
 }
 
 .toolbar > :last-child {
@@ -20,40 +17,52 @@
 
 .frame {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: var(--space-3);
+  align-items: start;
   overflow: auto;
+  padding: var(--space-3);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-divider);
+  border-radius: var(--radius-panel);
 }
 
 .gutter {
   margin: 0;
-  padding: var(--space-2) var(--space-2) var(--space-2) 0;
+  padding: 0;
   list-style: none;
   font-family: var(--font-mono);
   font-size: var(--text-mono);
-  line-height: 1.7;
+  line-height: var(--leading-body);
   color: var(--color-text-muted);
   font-variant-numeric: tabular-nums;
   text-align: right;
   user-select: none;
 }
 
+.gutter li {
+  margin: 0;
+  padding: 0;
+}
+
 .pre {
   margin: 0;
-  padding: var(--space-2) 0;
+  padding: 0;
   overflow: auto;
   font-family: var(--font-mono);
   font-size: var(--text-mono);
-  line-height: 1.7;
+  line-height: var(--leading-body);
 }
 
 .pre code {
+  display: block;
   font-family: inherit;
   font-size: inherit;
+  line-height: inherit;
   white-space: pre;
 }
 
 .footer {
-  padding: var(--space-2) 0;
   font-family: var(--font-mono);
   font-size: var(--text-label);
   color: var(--color-text-muted);

@@ -29,20 +29,25 @@ export interface AlertProps {
 
 export function Alert({ kind = 'note', title, children, onDismiss, className }: AlertProps) {
   const critical = kind === 'critical';
+  const hasBody = Boolean(title || children);
   return (
     <div className={cx(styles.alert, styles[kind], className)} role={critical ? 'alert' : 'status'}>
-      <span className={styles.icon} aria-hidden="true">
-        <Icon name={KIND_ICON[kind]} />
-      </span>
-      <div className={styles.body}>
+      <div className={styles.head}>
+        <span className={styles.icon} aria-hidden="true">
+          <Icon name={KIND_ICON[kind]} />
+        </span>
         <p className={styles.kind}>{KIND_LABEL[kind]}</p>
-        {title ? <p className={styles.title}>{title}</p> : null}
-        {children ? <div className={styles.detail}>{children}</div> : null}
       </div>
       {onDismiss ? (
         <IconButton label="Dismiss" intent="ghost" size="sm" onClick={onDismiss}>
           <Icon name="close" />
         </IconButton>
+      ) : null}
+      {hasBody ? (
+        <div className={styles.body}>
+          {title ? <p className={styles.title}>{title}</p> : null}
+          {children ? <div className={styles.detail}>{children}</div> : null}
+        </div>
       ) : null}
     </div>
   );

@@ -14,10 +14,15 @@
 
 .body {
   margin: 0;
+  padding: var(--space-3);
   min-height: var(--space-8);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: var(--border-width) solid var(--color-divider);
+  border-radius: var(--radius-panel);
   font-family: var(--font-mono);
   font-size: var(--text-mono);
-  line-height: 1.7;
+  line-height: var(--leading-body);
   white-space: pre-wrap;
 }
 

@@ -1,29 +1,39 @@
 .alert {
   composes: edge from './StatusEdge.module.css';
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: var(--space-3);
+  grid-template-columns: 1fr auto;
   align-items: start;
+  column-gap: var(--space-3);
+  row-gap: var(--space-2);
   background: var(--color-bg);
 }
 
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--space-6);
+}
+
 .icon {
+  display: flex;
   color: var(--color-text-muted);
-  margin-top: var(--space-1);
 }
 
 .kind {
   composes: kind from './StatusEdge.module.css';
 }
 
-.title {
-  font-size: var(--text-body);
-  margin-top: var(--space-1);
+.body {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
 }
 
+.title,
 .detail {
   font-size: var(--text-body);
-  margin-top: var(--space-1);
 }
 
 .note {

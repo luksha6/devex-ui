@@ -10,19 +10,55 @@ import { Foundation, specimen } from './Foundation';
   rule="Primary is brand green. Danger is red. Success is green. Warning is amber. Status hues pass 4.5:1 at 11px."
   why="Red means stop or destroy. Green means ok. Primary is the next step, not an alert. Hairlines stay pale. Controls use a darker border."
 >
+  <div className={specimen.strip} role="list">
+    <div className={specimen.swatch} role="listitem">
+      <span className={`${specimen.chip} ${specimen.chipInteractive}`} />
+      <p className={specimen.label}>Primary</p>
+    </div>
+    <div className={specimen.swatch} role="listitem">
+      <span className={`${specimen.chip} ${specimen.chipDanger}`} />
+      <p className={specimen.label}>Danger</p>
+    </div>
+    <div className={specimen.swatch} role="listitem">
+      <span className={`${specimen.chip} ${specimen.chipSuccess}`} />
+      <p className={specimen.label}>Success</p>
+    </div>
+    <div className={specimen.swatch} role="listitem">
+      <span className={`${specimen.chip} ${specimen.chipWarning}`} />
+      <p className={specimen.label}>Warning</p>
+    </div>
+    <div className={specimen.swatch} role="listitem">
+      <span className={`${specimen.chip} ${specimen.chipText}`} />
+      <p className={specimen.label}>Text</p>
+    </div>
+    <div className={specimen.swatch} role="listitem">
+      <span className={`${specimen.chip} ${specimen.chipBorder}`} />
+      <p className={specimen.label}>Control</p>
+    </div>
+    <div className={specimen.swatch} role="listitem">
+      <span className={`${specimen.chip} ${specimen.chipDivider}`} />
+      <p className={specimen.label}>Hairline</p>
+    </div>
+    <div className={specimen.swatch} role="listitem">
+      <span className={`${specimen.chip} ${specimen.chipSurface}`} />
+      <p className={specimen.label}>Surface</p>
+    </div>
+  </div>
   <div className={specimen.pair}>
     <div className={specimen.related}>
       <p className={specimen.kicker}>Action</p>
-      <Button>Verify</Button>
-      <Button intent="secondary">Open the diff</Button>
+      <div className={specimen.related}>
+        <Button>Verify</Button>
+        <Button intent="secondary">Open the diff</Button>
+      </div>
       <p className={specimen.body}>Primary is the brand green. Outline is the other option.</p>
     </div>
     <div className={specimen.related}>
       <p className={specimen.kicker}>Status</p>
-      <Button intent="danger">Revoke</Button>
-      <Alert kind="ok" title="Complete">
-        Cutover finished.
-      </Alert>
+      <div className={specimen.related}>
+        <Button intent="danger">Revoke</Button>
+        <Alert kind="ok">Complete</Alert>
+      </div>
       <p className={specimen.body}>Revoke is red. Complete is success green. Both are labeled in type.</p>
     </div>
   </div>

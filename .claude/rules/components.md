@@ -73,6 +73,8 @@ Do not export or invent `Dialog.Root`, `Dialog.Header`, `DialogFooter`, `DialogC
 
 **`Drawer`** — sheet. Same card as Dialog: `open`, `onClose`, `title`, `children`, `actions?`. `side?: 'bottom' | 'end'` (default `bottom`). End becomes a bottom sheet under 640px. Use for filters and mobile chrome, not confirmations.
 
+**`Menu`** — actions on a control. **Not compound.** `label`, `items: { id, label, onSelect, disabled?, danger? }[]`, `open`, `onOpenChange`, single element child as the trigger. `align?: 'start' | 'end'`. `disabled?` disables the trigger. Arrows, Home, and End move. Escape and click outside close. Tab closes. Does not lock page scroll. No `Menu.Item`.
+
 **`Tooltip`** — `content: ReactNode`, `children: ReactElement` (one focusable child). Opens on hover/focus, and on touch pointer. Escape closes. `aria-describedby` is set only while open.
 
 **`ToastProvider` / `useToast`** — Wrap the click target and call `useToast()`. `Toaster` is the same export.

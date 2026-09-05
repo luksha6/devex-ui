@@ -31,7 +31,8 @@ export function CodeBlock({ languages, testedAgainst, testedAt, className }: Cod
   return (
     <div className={cx(styles.block, className)}>
       {languages.map((sample) => {
-        const lines = sample.source.replace(/\n$/, '').split('\n');
+        const source = sample.source.replace(/\n$/, '');
+        const lines = source.split('\n');
         return (
           <section key={sample.id}>
             <div className={styles.toolbar}>
@@ -47,7 +48,7 @@ export function CodeBlock({ languages, testedAgainst, testedAt, className }: Cod
                 ))}
               </ol>
               <pre className={styles.pre}>
-                <code>{sample.source}</code>
+                <code>{source}</code>
               </pre>
             </div>
           </section>

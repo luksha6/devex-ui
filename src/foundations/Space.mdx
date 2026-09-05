@@ -5,20 +5,74 @@ import { Foundation, specimen } from './Foundation';
 
 <Foundation
   title="Space"
-  rule="Integer 4px. Related items share `--space-2` (8px). Sections share `--space-6` (24px). Controls use `--radius-control`; panels use `--radius-panel`. The scale is `--space-1` `--space-2` `--space-3` `--space-4` `--space-6` `--space-8`. There is no `--space-5` or `--space-7`."
+  rule="Integer 4px. Related items share `--space-2`. Sections share `--space-6`. Controls use `--radius-control`. Panels use `--radius-panel`. There is no `--space-5` or `--space-7`."
   why="No 4.6px or 6px gaps. Optical-only borders are not spacing. Agents must not invent `--space-5`."
 >
+  <div className={specimen.band}>
+    <p className={specimen.kicker}>Scale</p>
+    <div>
+      <div className={specimen.step}>
+        <p className={specimen.label}>--space-1 · 4</p>
+        <span className={`${specimen.bar} ${specimen.w1}`} />
+      </div>
+      <div className={specimen.step}>
+        <p className={specimen.label}>--space-2 · 8 · related</p>
+        <span className={`${specimen.bar} ${specimen.w2}`} />
+      </div>
+      <div className={specimen.step}>
+        <p className={specimen.label}>--space-3 · 12</p>
+        <span className={`${specimen.bar} ${specimen.w3}`} />
+      </div>
+      <div className={specimen.step}>
+        <p className={specimen.label}>--space-4 · 16</p>
+        <span className={`${specimen.bar} ${specimen.w4}`} />
+      </div>
+      <div className={specimen.step}>
+        <p className={specimen.label}>--space-6 · 24 · section</p>
+        <span className={`${specimen.bar} ${specimen.w6}`} />
+      </div>
+      <div className={specimen.step}>
+        <p className={specimen.label}>--space-8 · 32</p>
+        <span className={`${specimen.bar} ${specimen.w8}`} />
+      </div>
+    </div>
+  </div>
+  <div className={specimen.band}>
+    <p className={specimen.kicker}>Radius</p>
+    <div className={specimen.radiusRow}>
+      <div className={specimen.radiusSwatch}>
+        <span className={`${specimen.radiusBox} ${specimen.radiusTight}`} />
+        <p className={specimen.label}>tight · 4</p>
+      </div>
+      <div className={specimen.radiusSwatch}>
+        <span className={`${specimen.radiusBox} ${specimen.radiusControl}`} />
+        <p className={specimen.label}>control · 12</p>
+      </div>
+      <div className={specimen.radiusSwatch}>
+        <span className={`${specimen.radiusBox} ${specimen.radiusPanel}`} />
+        <p className={specimen.label}>panel · 16</p>
+      </div>
+      <div className={specimen.radiusSwatch}>
+        <span className={`${specimen.radiusBox} ${specimen.radiusFull}`} />
+        <p className={specimen.label}>full</p>
+      </div>
+    </div>
+  </div>
   <div className={specimen.pair}>
     <div className={specimen.sectioned}>
-      <div className={specimen.related}>
-        <p className={specimen.kicker}>Related · 8px</p>
-        <p className={specimen.title}>Backoff policy</p>
-        <p className={specimen.body}>Retry-After is authoritative.</p>
+      <div className={specimen.panel}>
+        <div className={specimen.related}>
+          <p className={specimen.kicker}>Related · 8px</p>
+          <p className={specimen.title}>Backoff policy</p>
+          <p className={specimen.body}>Retry-After is authoritative.</p>
+        </div>
       </div>
-      <div className={specimen.related}>
-        <p className={specimen.kicker}>Next section · 24px above</p>
-        <p className={specimen.title}>Budgets</p>
-        <p className={specimen.body}>Hard cap. 429 after this is a shed, not a bug.</p>
+      <div className={specimen.panel}>
+        <div className={specimen.related}>
+          <p className={specimen.kicker}>Next section · 24px above</p>
+          <p className={specimen.title}>Budgets</p>
+          <p className={specimen.body}>Hard cap. 429 after this is a shed, not a bug.</p>
+        </div>
       </div>
     </div>
     <div className={specimen.refused}>
@@ -30,4 +84,45 @@ import { Foundation, specimen } from './Foundation';
       </div>
     </div>
   </div>
+  <table className={specimen.table}>
+    <thead>
+      <tr>
+        <th>Token</th>
+        <th>Size</th>
+        <th>Use</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className={specimen.mono}>--space-1</td>
+        <td>4</td>
+        <td>Tight inset, chip pad</td>
+      </tr>
+      <tr>
+        <td className={specimen.mono}>--space-2</td>
+        <td>8</td>
+        <td>Related items</td>
+      </tr>
+      <tr>
+        <td className={specimen.mono}>--space-3</td>
+        <td>12</td>
+        <td>Control pad</td>
+      </tr>
+      <tr>
+        <td className={specimen.mono}>--space-4</td>
+        <td>16</td>
+        <td>Panel pad</td>
+      </tr>
+      <tr>
+        <td className={specimen.mono}>--space-6</td>
+        <td>24</td>
+        <td>Section gap</td>
+      </tr>
+      <tr>
+        <td className={specimen.mono}>--space-8</td>
+        <td>32</td>
+        <td>Page gap</td>
+      </tr>
+    </tbody>
+  </table>
 </Foundation>

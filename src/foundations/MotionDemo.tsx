@@ -1,47 +1,47 @@
 import { useState } from 'react';
-import { Callout } from '../docs/Callout/Callout';
-import { CodeBlock } from '../docs/CodeBlock/CodeBlock';
-import { SectionAnchor } from '../docs/SectionAnchor/SectionAnchor';
 import { Button } from '../primitives/Button/Button';
 import { Dialog } from '../primitives/Dialog/Dialog';
-import { SegmentedControl } from '../primitives/SegmentedControl/SegmentedControl';
+import { Field } from '../primitives/Field/Field';
 import { specimen } from './Foundation';
 
 export function MotionDemo() {
   const [open, setOpen] = useState(false);
-  const [view, setView] = useState('human');
+  const [corpus, setCorpus] = useState('knowledge-prod');
   return (
     <>
-      <p className={specimen.lede}>Tab onto the controls. Copy stays on the control.</p>
-      <Button>Verify</Button> <Button intent="secondary">Open the diff</Button>
-      <SectionAnchor
-        id="backoff-policy"
-        title="Backoff policy"
-        since="v2.09"
-        commit="4a91c02"
-        path="platform/knowledge/rate-limits"
-      />
-      <CodeBlock
-        languages={[{ id: 'ts', label: 'TypeScript', source: 'await client.retry();\n' }]}
-      />
-      <p className={specimen.lede}>
-        <span className={specimen.mono}>--duration-fast</span> 120ms ·{' '}
-        <span className={specimen.mono}>--duration-base</span> 180ms
-      </p>
-      <SegmentedControl
-        label="Audience"
-        value={view}
-        onChange={setView}
-        options={[
-          { value: 'human', label: 'Human' },
-          { value: 'agent', label: 'Agent' },
-        ]}
-      />
-      <Button onClick={() => setOpen(true)}>Open dialog</Button>
-      <Dialog open={open} onClose={() => setOpen(false)} title="Confirm cutover">
-        <p>Opacity only. 180ms.</p>
-      </Dialog>
-      <Callout kind="agent-only">Expand this. Same duration tokens.</Callout>
+      <div className={specimen.band}>
+        <p className={specimen.kicker}>Focus</p>
+        <p className={specimen.body}>
+          Tab onto the field, then the button. Fields take the ring on the border. Filled buttons
+          keep a tight ring. Outline and ghost offset by 2px.
+        </p>
+        <div className={specimen.related}>
+          <Field
+            label="Corpus"
+            value={corpus}
+            onChange={(event) => setCorpus(event.target.value)}
+          />
+          <div>
+            <Button>Verify</Button>
+          </div>
+        </div>
+      </div>
+      <div className={specimen.band}>
+        <p className={specimen.kicker}>State</p>
+        <p className={specimen.body}>
+          Open is 180ms opacity. The result stays if motion is reduced.
+        </p>
+        <div>
+          <Button onClick={() => setOpen(true)}>Open dialog</Button>
+        </div>
+        <Dialog open={open} onClose={() => setOpen(false)} title="Confirm cutover">
+          <p>Opacity only. 180ms.</p>
+        </Dialog>
+      </div>
+      <div className={specimen.band}>
+        <p className={specimen.kicker}>Reduced</p>
+        <p className={specimen.body}>Duration tokens collapse. Loops stop. The result stays.</p>
+      </div>
     </>
   );
 }

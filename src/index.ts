@@ -27,6 +27,7 @@ export { Drawer, type DrawerProps } from './primitives/Drawer/Drawer';
 export { Field, type FieldProps } from './primitives/Field/Field';
 export { Icon, type IconProps } from './primitives/Icon/Icon';
 export { IconButton, type IconButtonProps } from './primitives/IconButton/IconButton';
+export { Menu, type MenuItem, type MenuProps } from './primitives/Menu/Menu';
 export { Input, type InputProps } from './primitives/Input/Input';
 export { MultiSelect, type MultiSelectProps } from './primitives/MultiSelect/MultiSelect';
 export { Nav, type NavLink, type NavProps } from './primitives/Nav/Nav';

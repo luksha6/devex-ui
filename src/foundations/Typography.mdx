@@ -6,9 +6,63 @@ import { Foundation, specimen } from './Foundation';
 
 <Foundation
   title="Typography"
-  rule="One family. Onest for UI, prose, code, ids, figures, and kickers (`--font-sans`). `--font-heading`, `--font-body`, and `--font-mono` alias it. Flush left, 68ch."
+  rule="One family. Onest for UI, prose, code, ids, figures, and kickers. `--font-heading`, `--font-body`, and `--font-mono` alias `--font-sans`. Flush left, 68ch."
   why="No second cut. Ampersand is a letter, not a flourish. Table headers are sentence-case labels. Form labels stay sentence case. Tabular figures belong on numbers, not a second face."
 >
+  <div className={specimen.band}>
+    <p className={specimen.kicker}>Scale</p>
+    <div className={specimen.scale}>
+      <div className={specimen.scaleRow}>
+        <p className={specimen.scaleMeta}>kicker</p>
+        <p className={specimen.scaleMeta}>11</p>
+        <Text as="div" variant="kicker">
+          Platform / Knowledge
+        </Text>
+      </div>
+      <div className={specimen.scaleRow}>
+        <p className={specimen.scaleMeta}>label</p>
+        <p className={specimen.scaleMeta}>11</p>
+        <Text as="div" variant="label">
+          Corpus id
+        </Text>
+      </div>
+      <div className={specimen.scaleRow}>
+        <p className={specimen.scaleMeta}>mono</p>
+        <p className={specimen.scaleMeta}>13</p>
+        <Text as="div" variant="mono">
+          knowledge-prod · 4a91c02
+        </Text>
+      </div>
+      <div className={specimen.scaleRow}>
+        <p className={specimen.scaleMeta}>body</p>
+        <p className={specimen.scaleMeta}>15</p>
+        <Text as="div" variant="body">
+          Clients see 429 when a scope is over budget.
+        </Text>
+      </div>
+      <div className={specimen.scaleRow}>
+        <p className={specimen.scaleMeta}>title</p>
+        <p className={specimen.scaleMeta}>20</p>
+        <Text as="div" variant="title">
+          Backoff policy
+        </Text>
+      </div>
+      <div className={specimen.scaleRow}>
+        <p className={specimen.scaleMeta}>section</p>
+        <p className={specimen.scaleMeta}>28</p>
+        <Text as="div" variant="section">
+          Rate limits
+        </Text>
+      </div>
+      <div className={specimen.scaleRow}>
+        <p className={specimen.scaleMeta}>display</p>
+        <p className={specimen.scaleMeta}>36</p>
+        <Text as="div" variant="display">
+          Rate limits & retries
+        </Text>
+      </div>
+    </div>
+  </div>
   <div className={specimen.pair}>
     <article className={specimen.prose}>
       <Text as="div" variant="kicker">
@@ -29,27 +83,39 @@ import { Foundation, specimen } from './Foundation';
     <div className={specimen.refused}>
       <p className={specimen.refusedLabel}>Refused</p>
       <p className={specimen.fakeDisplay}>Rate limits</p>
-      <p className={specimen.body}>Centered display with tracking. That is a landing page, not a tool.</p>
+      <p className={specimen.body}>
+        Centered display with tracking. That is a landing page, not a tool.
+      </p>
     </div>
   </div>
   <table className={specimen.table}>
     <thead>
       <tr>
         <th>Role</th>
-        <th>Family</th>
         <th>Token</th>
+        <th>Use</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>UI and prose</td>
-        <td>Onest</td>
         <td className={specimen.mono}>--font-sans</td>
+        <td>Onest. The only family.</td>
       </tr>
       <tr>
-        <td>Heading / body / mono aliases</td>
-        <td>Onest</td>
+        <td>Aliases</td>
         <td className={specimen.mono}>--font-heading · --font-body · --font-mono</td>
+        <td>Same face. No second cut.</td>
+      </tr>
+      <tr>
+        <td>Measure</td>
+        <td className={specimen.mono}>--measure-prose</td>
+        <td>68ch. Flush left.</td>
+      </tr>
+      <tr>
+        <td>Figures</td>
+        <td className={specimen.mono}>tabular-nums</td>
+        <td>On numbers, not on every mono span.</td>
       </tr>
     </tbody>
   </table>

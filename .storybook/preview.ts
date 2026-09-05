@@ -5,6 +5,10 @@ import './preview.css';
 const preview: Preview = {
   parameters: {
     layout: 'padded',
+    backgrounds: {
+      default: 'page',
+      values: [{ name: 'page', value: '#fdfdfd' }],
+    },
     controls: {
       matchers: { color: /(background|color)$/i, date: /Date$/ },
     },

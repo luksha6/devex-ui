@@ -17,7 +17,18 @@
   transition:
     background-color var(--duration-fast) var(--ease-standard),
     border-color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard),
     color var(--duration-fast) var(--ease-standard);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.filled:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-focus);
 }
 
 .sm {

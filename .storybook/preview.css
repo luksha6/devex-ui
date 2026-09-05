@@ -1,3 +1,14 @@
+html,
+body,
+#storybook-root,
+.sb-show-main,
+.docs-story,
+.innerZoomElementWrapper,
+.sbdocs-preview {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
 .sbdocs .sbdocs-title {
   display: none;
 }
@@ -15,4 +26,14 @@
   font-size: var(--text-body);
   font-weight: 400;
   line-height: var(--leading-body);
+}
+
+.sbdocs.sbdocs-wrapper {
+  justify-content: flex-start;
+  padding: var(--space-8) var(--space-6);
+}
+
+.sbdocs.sbdocs-content {
+  max-width: calc(var(--measure-prose) + 220px);
+  margin-inline: 0;
 }
