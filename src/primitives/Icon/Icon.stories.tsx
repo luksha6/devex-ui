@@ -15,6 +15,9 @@ const names: IconName[] = [
   'minus',
   'copy',
   'external',
+  'menu',
+  'calendar',
+  'upload',
 ];
 
 const meta: Meta<typeof Icon> = {

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Button } from '../../primitives/Button/Button';
 import { cx } from '../../utils/cx';
+import { isCodeTested } from '../document';
 import styles from './CodeBlock.module.css';
 
 export interface CodeSample {
@@ -15,17 +16,37 @@ export interface CodeBlockProps {
   languages: readonly CodeSample[];
   testedAgainst?: string;
   testedAt?: string;
+  copyLabel?: string;
+  copiedLabel?: string;
+  copyFailedLabel?: string;
+  untestedLabel?: string;
   className?: string;
 }
 
-export function CodeBlock({ languages, testedAgainst, testedAt, className }: CodeBlockProps) {
+export function CodeBlock({
+  languages,
+  testedAgainst,
+  testedAt,
+  copyLabel = 'Copy',
+  copiedLabel = 'Copied',
+  copyFailedLabel = 'Copy failed',
+  untestedLabel = 'untested',
+  className,
+}: CodeBlockProps) {
   const [copied, setCopied] = useState<string | null>(null);
-  const tested = Boolean(testedAgainst && testedAt);
+  const [failed, setFailed] = useState<string | null>(null);
+  const tested = isCodeTested(testedAgainst, testedAt);
 
   async function copy(id: string, source: string) {
-    await navigator.clipboard.writeText(source);
-    setCopied(id);
-    window.setTimeout(() => setCopied(null), 1600);
+    try {
+      await navigator.clipboard.writeText(source);
+      setFailed(null);
+      setCopied(id);
+      window.setTimeout(() => setCopied(null), 1600);
+    } catch {
+      setCopied(null);
+      setFailed(id);
+    }
   }
 
   return (
@@ -37,8 +58,15 @@ export function CodeBlock({ languages, testedAgainst, testedAt, className }: Cod
           <section key={sample.id}>
             <div className={styles.toolbar}>
               <span>{sample.label}</span>
-              <Button intent="ghost" onClick={() => void copy(sample.id, sample.source)}>
-                {copied === sample.id ? 'Copied' : 'Copy'}
+              <Button
+                intent={failed === sample.id ? 'danger' : 'ghost'}
+                onClick={() => void copy(sample.id, sample.source)}
+              >
+                {failed === sample.id
+                  ? copyFailedLabel
+                  : copied === sample.id
+                    ? copiedLabel
+                    : copyLabel}
               </Button>
             </div>
             <div className={styles.frame}>
@@ -55,7 +83,7 @@ export function CodeBlock({ languages, testedAgainst, testedAt, className }: Cod
         );
       })}
       <footer className={cx(styles.footer, !tested && styles.untested)}>
-        {tested ? `tested against ${testedAgainst} · ${testedAt}` : 'untested'}
+        {tested ? `tested against ${testedAgainst} · ${testedAt}` : untestedLabel}
       </footer>
     </div>
   );

@@ -4,11 +4,7 @@
 }
 
 .panel {
-  position: absolute;
-  z-index: var(--z-overlay);
-  top: calc(100% + var(--space-1));
-  left: 0;
-  min-width: max(100%, calc(var(--space-8) * 6));
+  min-width: calc(var(--space-8) * 6);
   margin: 0;
   padding: var(--space-1);
   background: var(--color-bg);
@@ -17,13 +13,10 @@
   box-shadow: var(--shadow-panel);
 }
 
-.end {
-  left: auto;
-  right: 0;
-}
-
 .item {
-  display: block;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
   width: 100%;
   padding: var(--space-2) var(--space-3);
   border: 0;
@@ -43,6 +36,13 @@
 
 .danger {
   color: var(--color-danger);
+}
+
+.kind {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-kicker);
+  text-transform: uppercase;
 }
 
 .blocked {

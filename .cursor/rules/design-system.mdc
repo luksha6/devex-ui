@@ -8,7 +8,7 @@ alwaysApply: false
 
 React 18/19 design system. Product kit for apps. Write a page once: people get layout, agents get markdown. UI for watching a run. Catalog: Storybook on port 6006. There is no Vue, no Tailwind, no utility classes. Hookful primitives are client components (`'use client'`). Load CSS yourself; the published JS entry does not apply it.
 
-Load CSS once per app: `import '@luksha6/devex-ui/styles.css'`. That file loads Onest (300/400/500). One family. `--font-mono` aliases `--font-sans`.
+Load CSS once per app: `import '@luksha6/devex-ui/styles.css'`. Wrap the tree in `Theme`. That file ships Onest (300/400/500). One family. `--font-mono` aliases `--font-sans`. Reset applies under `[data-devex]`.
 
 ## Architectural laws
 
@@ -20,7 +20,7 @@ Consumers must not ship raw HTML controls or hardcoded look:
 - No arbitrary utilities (`p-[13px]`, `bg-[#22463d]`). This package is CSS modules + tokens.
 - Controls use `--radius-control`. Panels use `--radius-panel`. Icon buttons, chips, and avatars use `--radius-full`. Measure 68ch. Color is never the only channel — status, lifecycle, and uncertainty have words.
 - Primary is brand green (`--color-interactive`). Danger is red. Success is green. Warning is amber. Deprecated is gray (`--st-dep`), not red.
-- A toast cannot carry a long-running job. Use `RunStatus` + `Stream` + `ToolCall`. Copy/cite/approve stay on the control.
+- A toast cannot carry a long-running job. Use `Run`. Copy/cite/approve stay on the control.
 - Honor `prefers-reduced-motion` (duration tokens already collapse). Fail is red and named in type.
 
 **Exception:** native elements are allowed only inside `src/primitives/*` and `src/docs/*` while implementing those primitives. Consumers never do this.
@@ -41,13 +41,25 @@ Primitives must not import `@luksha6/devex-ui/docs` or `src/docs/`.
 
 | Component | Role | Variants / props |
 | --- | --- | --- |
-| `Button` | Action | `intent`: primary \| secondary \| ghost \| danger. `fill`: filled \| outline (primary defaults filled; others outline). `size`: sm \| md \| lg. `loading`, `leading`, `trailing`. Navigation is `TextLink`, not `intent="link"`. |
+| `Button` | Action | `intent`: primary \| secondary \| ghost \| danger. `fill`: filled \| outline (primary defaults filled; others outline). `size`: sm \| md \| lg. `loading`, `leading`, `trailing`. `href` paints a link. Inline navigation is `TextLink`. |
 | `IconButton` | Icon-only action | `label` required (accessible name). Default `intent` is `secondary`. Child is `<Icon name=…>` |
-| `Icon` | Glyph | `name`: check, close, search, chevron-down/up/right, caution, info, plus, minus, copy, external. `size`: 12 \| 16 \| 20 |
+| `Icon` | Glyph | `name`: check, close, search, chevron-down/up/right, caution, info, plus, minus, copy, external, menu, calendar, upload. Or `children`. `size`: 12 \| 16 \| 20 |
+| `Theme` | Appearance | `value`: light \| dark. `root`: local \| document. Required. `useTheme()` reads it. |
+| `Stack` / `Cluster` | Layout | `gap`: 1 \| 2 \| 3 \| 4 \| 6 \| 8. `as?` |
+| `Page` | Page chrome | `nav?`, article children (68ch or `measure="wide"`), `rail?`. Skip link first. |
+| `AppShell` | Product chrome | `nav?`, `sidebar?`, article, `rail?`. Skip link first. Default measure is wide. |
+| `Breadcrumb` | Trail | `items: { label, href? }[]`. Last item is the page. Separators silent. |
+| `Accordion` | Disclosures | `items: { id, title, panel }[]`, `value: string[]`, `onChange`. `multiple?`. Not `Accordion.Item`. |
+| `CommandPalette` | Search and run | `open`, `onClose`, `commands`. App binds ⌘K. |
+| `EmptyState` | Named empty | `title`, `body?`, `action?` |
+| `Pagination` | Pages | `page`, `onChange`, `pageCount?` or `hasMore?` |
 | `Field` | Labeled text input | `label`, `hint`, `error`, `size`. Wraps `Input` |
 | `Input` | Bare input | `size`: sm \| md \| lg. Prefer `Field` |
 | `Textarea` | Multiline | `label` required, `hint`, `error`, `size`: sm \| md \| lg |
-| `Select` | Native select | `label` required, `options: { value, label, disabled? }[]`, `placeholder?` |
+| `Select` | Native select | `label` required, `options: { value, label, disabled?, group?, detail? }[]`, `placeholder?` |
+| `Combobox` | Searchable one | Same options. `value: string`, `onChange`. Empty is none. Portaled list. Groups + detail. |
+| `DateField` | Native date | `label`, `hint?`, `error?`. `min` / `max` are HTML. Not a custom calendar. |
+| `FileUpload` | Drop or browse | Controlled `files` + `onChange`. `accept?`, `multiple?`, `maxSize?`. Named size errors. |
 | `MultiSelect` | Many values | Same options as Select. `value: string[]`, `onChange(string[])`. Search + chips. `max?` |
 | `SearchField` | Search + clear | `label` required, `onClear?`. Clear shows when the value is non-empty |
 | `Checkbox` | Checkbox | `label` |
@@ -57,19 +69,23 @@ Primitives must not import `@luksha6/devex-ui/docs` or `src/docs/`.
 | `Dialog` | Modal | **Not compound.** `open`, `onClose`, `title`, `children`, `actions?`, `width`: sm \| md. Bottom sheet under 640px. No `Dialog.Header` |
 | `Drawer` | Sheet | `open`, `onClose`, `title`, `children`, `actions?`, `side`: bottom \| end. End becomes bottom under 640px |
 | `Menu` | Actions on a control | **Not compound.** `label`, `items: { id, label, onSelect, disabled?, danger? }[]`, `open`, `onOpenChange`, one trigger child. `align`: start \| end. Escape and outside click close. No `Menu.Item` |
+| `Popover` | Interactive panel | `label`, `open`, `onOpenChange`, `content`, one trigger child. Portaled. Traps focus. No scroll lock. Tooltip is description only. |
+| `Card` | Panel | `title?`, `children?`, `actions?`. Optional `selected` + `onSelect`. Selected is a word. |
+| `Skeleton` | Placeholder | `variant`: text \| block \| disc. `label` names the wait. |
+| `Divider` | Hairline | `orientation`: horizontal \| vertical |
 | `Alert` | Inline status | `kind`: note \| ok \| caution \| critical. Kind word stays visible; `title?` is extra. `onDismiss?` |
 | `Tooltip` | Description | `content` + single element child. `aria-describedby` only while open |
 | `ToastProvider` / `useToast` | Out-of-band | Mount `<ToastProvider>` around the click target. Call `useToast().show`. Throws without a provider. `Toaster` is the same export. Not for Copied, Cite, Approve, or job progress |
 | `Text` | Type | `variant`: label \| body \| title \| section \| display \| mono \| kicker. `as?` |
-| `TextLink` | Inline link | Anchor props. Use instead of a link-styled button |
+| `TextLink` | Inline link | Anchor props. `as` for a router link. Drops unsafe hrefs. `target="_blank"` gets `rel="noopener noreferrer"` |
 | `Badge` | Count / live | `tone`: neutral \| count \| live |
 | `Tag` | Lifecycle | `kind`: stable \| beta \| deprecated \| internal. All four stay visible. Required is `RequiredTag`, not `kind="req"` |
 | `Spinner` | Wait | `size`: 12 \| 16 \| 20. `label` (empty string = decorative) |
 | `Avatar` / `AvatarGroup` | Identity | Avatar: `name`, `src?`, `size`: sm \| md \| lg (32 / 40 / 48). Disc, hashed brand tint. Group: `label` required, children |
-| `Nav` / `NavItem` | Chrome | Nav: `brand`, `links?`, `trailing?`. NavItem: `href`, `current?` |
+| `Nav` / `NavItem` | Chrome | Nav: `brand`, `links?`, `trailing?`, `linkAs?`. Collapses to a Drawer under 640px. NavItem: `href`, `current?`, `as?` |
 | `Tabs` | Panels | `label`, `items: { id, label, panel, disabled? }[]`, `value`, `onChange`. Not `Tabs.List` |
 | `Table` / `Mono` | Simple table | `headers`, `rows`. Panel shell. Sentence-case headers. `Mono` for ids/figures |
-| `DataTable` | Sortable data | Same shell as Table. `columns: { key, header, numeric?, mono?, sortable? }[]`, `rows`, `rowKey?`, `caption?`, `loading?`, `sortKey`/`sortDir`/`onSort?`. Only `sortable: true` columns are sort buttons |
+| `DataTable` | Sortable data | Same shell as Table. `columns: { key, header, numeric?, mono?, sortable? }[]`, `rows`, `rowKey?`, `caption?`, `loading?`, `footer?`, `sortKey`/`sortDir`/`onSort?`. Only `sortable: true` columns are sort buttons |
 | `PropertyField` | Label + control row | `label`, `hint?`, `children`. `role="group"` |
 | `Portal` / `VisuallyHidden` | Internals | Portal for overlays. Clip-hide text |
 
@@ -78,11 +94,11 @@ Primitives must not import `@luksha6/devex-ui/docs` or `src/docs/`.
 - **Alert** — in-page product status (ok/critical/dismiss). **Callout** — page note/caution/agent-only. **Toast** — out-of-band after the user leaves the page.
 - **Table** — static cells. **DataTable** — sortable figures; opt in per column. **ParameterTable** — named parameter rows.
 - **Field** — labeled text input. **SearchField** — search plus clear. **PropertyField** — label beside a control.
-- **Select** — one value, native. **MultiSelect** — many values, search + chips. **Menu** — actions on a control, not a value.
+- **Select** — one value, native. **Combobox** — one value, searchable. **MultiSelect** — many values, search + chips. **Menu** — actions on a control, not a value. **Popover** — interactive panel. **Tooltip** — description only.
 
 ## Pages and agent surfaces (`@luksha6/devex-ui/docs`)
 
-`PageMasthead`, `AudienceSwitch` (`value`, `onChange`, `blocks: DocBlock[]`), `CodeBlock` (`languages`, `testedAgainst?`, `testedAt?`), `ParameterTable`, `Callout` (`note` \| `caution` \| `agent-only`), `ResultRow` (hit \| `kind: 'withheld'`), `FreshnessStamp`, `SectionAnchor` + `citationUri`, `Stream`, `ToolCall`, `RunStatus`, `renderHuman`, `toAgentMarkdown` / `DocBlock`.
+`PageMasthead`, `AudienceSwitch` (`value`, `onChange`, `blocks: DocBlock[]`), `CodeBlock` (`languages`, `testedAgainst?`, `testedAt?`), `ParameterTable`, `Callout` (`note` \| `caution` \| `agent-only`), `ResultRow` (hit \| `kind: 'withheld'`), `FreshnessStamp`, `SectionAnchor` + `citationUri`, `Composer` (start a run), `Stream`, `ToolCall`, `RunStatus`, `Run`, `renderHuman`, `toAgentMarkdown` / `DocBlock` (heading, paragraph, callout, code, parameters, list, table, image, run). Paragraph and list `text` can be a string or `DocInline[]` (`{ text, href?, strong?, code? }`).
 
 One AST, two faces. Pass the same `DocBlock[]` to `AudienceSwitch`. Do not hand-write a parallel markdown string.
 

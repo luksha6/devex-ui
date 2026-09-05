@@ -42,15 +42,29 @@ const GLYPHS: Record<IconName, ReactNode> = {
       <path d="M6.5 4.5 H3.5 v8 h8 V9.5" />
     </>
   ),
+  menu: <path d="M2.5 4.5 h11 M2.5 8 h11 M2.5 11.5 h11" />,
+  calendar: (
+    <>
+      <rect x="2.5" y="3.5" width="11" height="10.5" rx="1" />
+      <path d="M2.5 6.5 h11 M5.5 2.5 v2.5 M10.5 2.5 v2.5" />
+    </>
+  ),
+  upload: (
+    <>
+      <path d="M8 11.5 V4.5 M5.5 6.5 8 4 10.5 6.5" />
+      <path d="M3.5 12.5 h9" />
+    </>
+  ),
 };
 
 export interface IconProps extends Omit<SVGAttributes<SVGSVGElement>, 'name'> {
-  name: IconName;
+  name?: IconName;
   size?: 12 | 16 | 20;
   label?: string;
+  children?: ReactNode;
 }
 
-export function Icon({ name, size = 16, label, className, ...rest }: IconProps) {
+export function Icon({ name, size = 16, label, className, children, ...rest }: IconProps) {
   const decorative = !label;
   return (
     <svg
@@ -65,7 +79,7 @@ export function Icon({ name, size = 16, label, className, ...rest }: IconProps) 
       role={decorative ? undefined : 'img'}
       focusable="false"
     >
-      {GLYPHS[name]}
+      {children ?? (name ? GLYPHS[name] : null)}
     </svg>
   );
 }

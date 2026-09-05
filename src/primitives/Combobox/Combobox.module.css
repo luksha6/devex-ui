@@ -1,0 +1,137 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.leading {
+  position: absolute;
+  left: var(--space-3);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.input {
+  padding-left: var(--space-8);
+  padding-right: var(--space-8);
+}
+
+.hasClear {
+  padding-right: var(--space-8);
+}
+
+.clear,
+.chevron {
+  position: absolute;
+  right: var(--space-1);
+}
+
+.chevron {
+  display: grid;
+  place-items: center;
+  width: var(--space-6);
+  height: var(--space-6);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.list {
+  margin: 0;
+  padding: var(--space-1);
+  list-style: none;
+  max-height: calc(var(--space-8) * 8);
+  overflow: auto;
+  background: var(--color-bg);
+  border: var(--border-width) solid var(--color-divider);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-panel);
+}
+
+.item {
+  margin: 0;
+}
+
+.group {
+  padding: var(--space-2) var(--space-2) var(--space-1);
+  color: var(--color-text-muted);
+  font-size: var(--text-label);
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-2);
+  border: 0;
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--color-text);
+  font: inherit;
+  font-size: var(--text-body);
+  text-align: left;
+  cursor: pointer;
+}
+
+.active {
+  background: var(--color-mark-bg);
+}
+
+.blocked {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-tight);
+  color: transparent;
+}
+
+.markOn {
+  background: var(--color-interactive);
+  border-color: var(--color-interactive);
+  color: var(--color-bg);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.detail {
+  color: var(--color-text-muted);
+  font-size: var(--text-label);
+}
+
+.empty {
+  padding: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--text-body);
+}
+
+@media (hover: hover) {
+  .option:hover:not(:disabled) {
+    background: var(--color-mark-bg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .list {
+    box-shadow: none;
+  }
+}

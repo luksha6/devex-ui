@@ -9,6 +9,11 @@ describe('RunStatus', () => {
     expect(screen.getByText('Failed').closest('[data-phase]')).not.toHaveAttribute('aria-busy');
   });
 
+  it('uses a passed phase word', () => {
+    render(<RunStatus phase="fail" label="Cutover" phaseLabels={{ fail: 'Did not finish' }} />);
+    expect(screen.getByText('Did not finish')).toBeInTheDocument();
+  });
+
   it('marks a running job busy', () => {
     render(<RunStatus phase="running" label="Reindex knowledge-prod" elapsedMs={12000} />);
     expect(screen.getByText('Running').closest('[data-phase]')).toHaveAttribute(

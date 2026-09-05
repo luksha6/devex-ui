@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useState, type ReactNode } from 'react';
+import { useContext, useLayoutEffect, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
+import { ThemeContext } from '../Theme/Theme';
 
 export interface PortalProps {
   children: ReactNode;
@@ -9,11 +10,12 @@ export interface PortalProps {
 }
 
 export function Portal({ children, container }: PortalProps) {
+  const theme = useContext(ThemeContext);
   const [target, setTarget] = useState<Element | null>(
     () => container ?? (typeof document !== 'undefined' ? document.body : null),
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setTarget(container ?? document.body);
   }, [container]);
 
@@ -21,5 +23,10 @@ export function Portal({ children, container }: PortalProps) {
     return null;
   }
 
-  return createPortal(children, target);
+  return createPortal(
+    <div data-devex="" data-theme={theme}>
+      {children}
+    </div>,
+    target,
+  );
 }

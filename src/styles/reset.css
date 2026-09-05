@@ -1,76 +1,75 @@
-*,
-*::before,
-*::after {
+[data-devex],
+[data-devex] *,
+[data-devex] *::before,
+[data-devex] *::after {
   box-sizing: border-box;
 }
 
-html {
-  background: var(--color-bg);
-  color: var(--color-text);
+html:has([data-devex]) body {
+  margin: 0;
 }
 
-body {
-  margin: 0;
+[data-devex] {
+  background: var(--color-bg);
+  color: var(--color-text);
   font-family: var(--font-sans);
   font-size: var(--text-body);
   font-weight: 400;
   line-height: var(--leading-body);
-  background: var(--color-bg);
-  color: var(--color-text);
   -webkit-font-smoothing: antialiased;
 }
 
-h1,
-h2,
-h3,
-h4 {
+[data-devex] h1,
+[data-devex] h2,
+[data-devex] h3,
+[data-devex] h4 {
   font-family: var(--font-heading);
   font-weight: 400;
   margin: 0;
   text-align: left;
 }
 
-p {
+[data-devex] p {
   margin: 0;
 }
 
-button,
-input,
-textarea,
-select {
+[data-devex] button,
+[data-devex] input,
+[data-devex] textarea,
+[data-devex] select {
   font: inherit;
 }
 
-input[type='radio'],
-input[type='checkbox'] {
+[data-devex] input[type='radio'],
+[data-devex] input[type='checkbox'] {
   accent-color: var(--color-interactive);
 }
 
-:focus {
+[data-devex] :focus {
   outline: none;
 }
 
-:focus-visible {
+[data-devex] :focus-visible {
   outline: 2px solid var(--color-focus);
   outline-offset: 2px;
 }
 
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
+[data-devex] input:focus-visible,
+[data-devex] textarea:focus-visible,
+[data-devex] select:focus-visible {
   outline: none;
   border-color: var(--color-focus);
   box-shadow: 0 0 0 var(--border-width) var(--color-focus);
 }
 
-input[aria-invalid='true']:focus-visible,
-textarea[aria-invalid='true']:focus-visible,
-select[aria-invalid='true']:focus-visible {
+[data-devex] input[aria-invalid='true']:focus-visible,
+[data-devex] textarea[aria-invalid='true']:focus-visible,
+[data-devex] select[aria-invalid='true']:focus-visible {
   border-color: var(--color-danger);
   box-shadow: 0 0 0 var(--border-width) var(--color-danger);
 }
 
-::selection {
+[data-devex] ::selection {
   background: var(--color-mark-bg);
 }
 

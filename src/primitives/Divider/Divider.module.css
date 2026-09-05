@@ -1,0 +1,15 @@
+.horizontal {
+  display: block;
+  width: 100%;
+  height: 0;
+  margin: var(--space-3) 0;
+  border: 0;
+  border-top: var(--border-width) solid var(--color-divider);
+}
+
+.vertical {
+  align-self: stretch;
+  width: 0;
+  margin: 0 var(--space-3);
+  border-left: var(--border-width) solid var(--color-divider);
+}

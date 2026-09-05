@@ -9,6 +9,8 @@ export interface SelectOption {
   value: string;
   label: string;
   disabled?: boolean;
+  group?: string;
+  detail?: string;
 }
 
 export interface SelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'size'> {

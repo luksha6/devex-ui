@@ -29,8 +29,8 @@ Same as a primitive, under `src/docs/Name/`, export from `src/docs/index.ts`. Th
 
 ## Tokens
 
-Hex, `rgb()`, and raw color literals belong in `src/tokens/` only. Components use `var(--color-*)`, `--space-*`, `--font-*`, `--duration-*`. `npm run lint` runs `scripts/ban-hex.mjs`.
+Hex, `rgb()`, and raw color literals belong in `src/tokens/` only. Components use `var(--color-*)`, `--space-*`, `--font-*`, `--duration-*`. `npm run lint` runs `scripts/ban-hex.mjs` and `scripts/ban-contrast.mjs`.
 
 ## Dual reader
 
-Human and Agent are two faces of one AST (`DocBlock` in `src/docs/document.ts`). `renderHuman` and `toAgentMarkdown` take the same array. `AudienceSwitch` takes `blocks`. If you add a block type, update both faces and `document.test.ts`. Meaning that only exists in CSS is a bug.
+Human and Agent are two faces of one AST (`DocBlock` in `src/docs/document.ts`). `renderHuman` and `toAgentMarkdown` take the same array. `AudienceSwitch` takes `blocks`. If you add a block type, update both faces and `document.test.ts`. Meaning that only exists in CSS is a bug. A long job is `Run`, not three widgets and not a toast.

@@ -118,4 +118,4 @@ Under `prefers-reduced-motion`, all three durations collapse to `0.01ms`. Skip l
 }
 ```
 
-No `@apply`, no `p-3`, no `p-[13px]`, no `bg-[#22463d]`. Do not invent `--violet-600`, `--rarity-*`, or `--color-border-strong`.
+No `@apply`, no `p-3`, no `p-[13px]`, no `bg-[#22463d]`. Do not invent `--violet-600` or `--color-border-strong`.

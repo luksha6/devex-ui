@@ -50,13 +50,13 @@ describe('Dialog', () => {
     await user.click(screen.getByRole('button', { name: 'Search docs' }));
     const close = screen.getByRole('button', { name: 'Close' });
     const corpus = screen.getByLabelText('Corpus');
-    expect(close).toHaveFocus();
-    await user.tab();
     expect(corpus).toHaveFocus();
     await user.tab();
     expect(close).toHaveFocus();
+    await user.tab();
+    expect(corpus).toHaveFocus();
     await user.tab({ shift: true });
-    expect(corpus).toHaveFocus();
+    expect(close).toHaveFocus();
   });
 
   it('does not steal focus when onClose identity changes while open', () => {

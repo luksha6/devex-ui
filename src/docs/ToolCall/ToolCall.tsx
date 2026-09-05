@@ -16,16 +16,26 @@ export interface ToolCallProps {
   args?: string;
   result?: string;
   latencyMs?: number;
+  statusLabels?: Partial<Record<ToolCallStatus, string>>;
   className?: string;
 }
 
-export function ToolCall({ name, status, args, result, latencyMs, className }: ToolCallProps) {
+export function ToolCall({
+  name,
+  status,
+  args,
+  result,
+  latencyMs,
+  statusLabels,
+  className,
+}: ToolCallProps) {
+  const named = { ...STATUS, ...statusLabels };
   return (
     <div className={cx(styles.call, className)} data-status={status}>
       <div className={styles.head}>
         {status === 'running' ? <Spinner size={12} label="" /> : null}
         <p className={styles.name}>{name}</p>
-        <p className={styles.status}>{STATUS[status]}</p>
+        <p className={styles.status}>{named[status]}</p>
         {latencyMs !== undefined ? <p className={styles.latency}>{latencyMs}ms</p> : null}
       </div>
       {args ? <p className={styles.meta}>{args}</p> : null}

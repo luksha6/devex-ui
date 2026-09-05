@@ -27,3 +27,23 @@
   align-items: center;
   gap: var(--space-4);
 }
+
+.menu {
+  display: none;
+}
+
+.sheet {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+@media (max-width: 639px) {
+  .links {
+    display: none;
+  }
+
+  .menu {
+    display: inline-flex;
+  }
+}

@@ -1,4 +1,5 @@
-:root {
+:root,
+[data-theme='light'] {
   --color-bg: #fdfdfd;
   --color-surface: #f1f1f2;
   --color-text: #1f2937;
@@ -23,7 +24,38 @@
   --st-stable: var(--color-success);
   --st-stable-deep: var(--color-success-deep);
   --st-beta: var(--color-warning);
-  --st-dep: #73757f;
+  --st-dep: #5c5e66;
   --st-dep-deep: #2e2f33;
   --st-int: #5d5e66;
+}
+
+[data-theme='dark'] {
+  --color-bg: #121413;
+  --color-surface: #1c1e1d;
+  --color-text: #f3f4f4;
+  --color-text-muted: #c8c9cd;
+  --color-interactive: #9ec9be;
+  --color-interactive-deep: #7fafa3;
+  --color-interactive-ink: #d7ebe6;
+  --color-interactive-mist: #6f9088;
+  --color-interactive-fog: #2a3834;
+  --color-chip: #3a3b40;
+  --color-danger: #ff6a59;
+  --color-danger-deep: #ff8a7d;
+  --color-success: #8fc96a;
+  --color-success-deep: #b0d994;
+  --color-warning: #e0a35c;
+  --color-mark-bg: #262827;
+  --color-divider: #2e302f;
+  --color-border: #9a9ba3;
+  --color-overlay: rgb(0 0 0 / 56%);
+  --color-focus: var(--color-interactive);
+  --shadow-panel: 0 1px 8px 1px rgb(0 0 0 / 40%);
+
+  --st-stable: var(--color-success);
+  --st-stable-deep: var(--color-success-deep);
+  --st-beta: var(--color-warning);
+  --st-dep: #b4b5bb;
+  --st-dep-deep: #d0d1d5;
+  --st-int: #b4b5bb;
 }

@@ -38,4 +38,20 @@ describe('Button', () => {
     await user.click(screen.getByRole('button', { name: 'Verify' }));
     expect(onClick).not.toHaveBeenCalled();
   });
+
+  it('renders a safe href as a link with button paint', async () => {
+    const user = userEvent.setup();
+    const onClick = vi.fn();
+    render(
+      <Button href="/runs" target="_blank" onClick={onClick}>
+        Open run
+      </Button>,
+    );
+    const link = screen.getByRole('link', { name: 'Open run' });
+    expect(link).toHaveAttribute('href', '/runs');
+    expect(link).toHaveAttribute('target', '_blank');
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+    await user.click(link);
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
 });

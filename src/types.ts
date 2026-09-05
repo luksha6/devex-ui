@@ -32,4 +32,7 @@ export type IconName =
   | 'plus'
   | 'minus'
   | 'copy'
-  | 'external';
+  | 'external'
+  | 'menu'
+  | 'calendar'
+  | 'upload';

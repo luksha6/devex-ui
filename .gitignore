@@ -1,6 +1,9 @@
 # Dependencies and build
 node_modules
 dist
+*.tgz
+fixtures/consumer/dist
+fixtures/consumer/node_modules
 dist-ssr
 storybook-static
 coverage

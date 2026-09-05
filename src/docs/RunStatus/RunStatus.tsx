@@ -15,10 +15,19 @@ export interface RunStatusProps {
   label: string;
   elapsedMs?: number;
   detail?: string;
+  phaseLabels?: Partial<Record<RunPhase, string>>;
   className?: string;
 }
 
-export function RunStatus({ phase, label, elapsedMs, detail, className }: RunStatusProps) {
+export function RunStatus({
+  phase,
+  label,
+  elapsedMs,
+  detail,
+  phaseLabels,
+  className,
+}: RunStatusProps) {
+  const named = { ...LABEL, ...phaseLabels };
   return (
     <div
       className={cx(styles.run, className)}
@@ -28,7 +37,7 @@ export function RunStatus({ phase, label, elapsedMs, detail, className }: RunSta
     >
       <div className={styles.head}>
         {phase === 'running' ? <Spinner size={12} label="" /> : null}
-        <p className={styles.phase}>{LABEL[phase]}</p>
+        <p className={styles.phase}>{named[phase]}</p>
         {elapsedMs !== undefined ? (
           <p className={styles.elapsed}>{Math.round(elapsedMs / 1000)}s</p>
         ) : null}

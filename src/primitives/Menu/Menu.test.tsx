@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Button } from '../Button/Button';
+import { Dialog } from '../Dialog/Dialog';
 import { Menu } from './Menu';
 
 function Example({
@@ -60,7 +61,7 @@ describe('Menu', () => {
     await user.keyboard('{ArrowDown}');
     expect(screen.getByRole('menuitem', { name: 'Archive' })).toHaveFocus();
     await user.keyboard('{End}');
-    expect(screen.getByRole('menuitem', { name: 'Revoke' })).toHaveFocus();
+    expect(screen.getByRole('menuitem', { name: /Revoke/ })).toHaveFocus();
     await user.keyboard('{Home}');
     expect(screen.getByRole('menuitem', { name: 'Copy id' })).toHaveFocus();
     await user.keyboard('{Enter}');
@@ -75,10 +76,63 @@ describe('Menu', () => {
     const archive = screen.getByRole('menuitem', { name: 'Archive' });
     expect(archive).toBeDisabled();
     await user.keyboard('{ArrowDown}');
-    expect(screen.getByRole('menuitem', { name: 'Revoke' })).toHaveFocus();
+    expect(screen.getByRole('menuitem', { name: /Revoke/ })).toHaveFocus();
     await user.click(archive);
     expect(screen.getByText('None')).toBeInTheDocument();
     expect(screen.getByRole('menu')).toBeInTheDocument();
+  });
+
+  it('jumps to a matching item from a letter', async () => {
+    const user = userEvent.setup();
+    render(<Example />);
+    await user.click(screen.getByRole('button', { name: 'Actions' }));
+    await user.keyboard('r');
+    expect(screen.getByRole('menuitem', { name: /Revoke/ })).toHaveFocus();
+  });
+
+  it('tabs out without returning focus to the trigger', async () => {
+    const user = userEvent.setup();
+    render(
+      <div>
+        <Example />
+        <button type="button">After</button>
+      </div>,
+    );
+    const trigger = screen.getByRole('button', { name: 'Actions' });
+    await user.click(trigger);
+    await user.tab();
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+    expect(trigger).not.toHaveFocus();
+    expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+  });
+
+  it('selects the hovered item', async () => {
+    const user = userEvent.setup();
+    render(<Example />);
+    await user.click(screen.getByRole('button', { name: 'Actions' }));
+    await user.hover(screen.getByRole('menuitem', { name: /Revoke/ }));
+    expect(screen.getByRole('menuitem', { name: /Revoke/ })).toHaveFocus();
+    await user.keyboard('{Enter}');
+    expect(screen.getByText('Picked revoke')).toBeInTheDocument();
+  });
+
+  it('closes inside a dialog without dismissing the dialog', async () => {
+    const user = userEvent.setup();
+    function Nested() {
+      const [open, setOpen] = useState(true);
+      return (
+        <Dialog open onClose={() => setOpen(false)} title="Row">
+          <Example />
+          <p>{open ? 'Open' : 'Closed'}</p>
+        </Dialog>
+      );
+    }
+    render(<Nested />);
+    await user.click(screen.getByRole('button', { name: 'Actions' }));
+    expect(screen.getByRole('menu', { name: 'Row actions' })).toBeInTheDocument();
+    await user.keyboard('{Escape}');
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+    expect(screen.getByRole('dialog', { name: 'Row' })).toBeInTheDocument();
   });
 
   it('does not open when the menu is disabled', async () => {

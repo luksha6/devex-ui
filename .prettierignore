@@ -3,3 +3,6 @@ storybook-static
 node_modules
 package-lock.json
 **/*.mdx
+*.tgz
+fixtures/consumer/dist
+fixtures/consumer/node_modules

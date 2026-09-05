@@ -1,0 +1,33 @@
+.nav {
+  min-width: 0;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.sep {
+  color: var(--color-text-muted);
+}
+
+.link {
+  font-size: var(--text-label);
+}
+
+.here {
+  color: var(--color-text);
+  font-size: var(--text-label);
+}

@@ -1,4 +1,11 @@
-export { toAgentMarkdown, type DocBlock } from './document';
+export {
+  isCodeTested,
+  toAgentMarkdown,
+  toInlineMarkdown,
+  type DocBlock,
+  type DocInline,
+  type DocText,
+} from './document';
 export { renderHuman } from './renderHuman';
 export { PageMasthead, type PageMastheadProps } from './PageMasthead/PageMasthead';
 export { AudienceSwitch, type AudienceSwitchProps } from './AudienceSwitch/AudienceSwitch';
@@ -14,5 +21,7 @@ export { FreshnessStamp, type FreshnessStampProps } from './FreshnessStamp/Fresh
 export { SectionAnchor, citationUri, type SectionAnchorProps } from './SectionAnchor/SectionAnchor';
 export { Stream, type StreamProps } from './Stream/Stream';
 export { ToolCall, type ToolCallProps } from './ToolCall/ToolCall';
+export { Composer, type ComposerProps } from './Composer/Composer';
+export { Run, type RunProps, type RunTool } from './Run/Run';
 export { RunStatus, type RunStatusProps } from './RunStatus/RunStatus';
 export type { RunPhase, StreamUncertainty, ToolCallStatus } from '../types';

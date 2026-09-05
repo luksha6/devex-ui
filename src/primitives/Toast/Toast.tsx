@@ -53,7 +53,13 @@ function makeId() {
 }
 
 /** Mount around the click target. Call `useToast().show` from inside. */
-export function ToastProvider({ children }: { children?: ReactNode }) {
+export function ToastProvider({
+  children,
+  dismissLabel = 'Dismiss',
+}: {
+  children?: ReactNode;
+  dismissLabel?: string;
+}) {
   const [queue, setQueue] = useState<ToastRecord[]>([]);
   const timers = useRef(new Map<string, number>());
 
@@ -112,7 +118,12 @@ export function ToastProvider({ children }: { children?: ReactNode }) {
         <Portal>
           <div className={styles.stack} aria-live="polite" aria-atomic="true">
             {queue.map((item) => (
-              <ToastItem key={item.id} item={item} onDismiss={() => dismiss(item.id)} />
+              <ToastItem
+                key={item.id}
+                item={item}
+                dismissLabel={dismissLabel}
+                onDismiss={() => dismiss(item.id)}
+              />
             ))}
           </div>
         </Portal>
@@ -121,7 +132,15 @@ export function ToastProvider({ children }: { children?: ReactNode }) {
   );
 }
 
-function ToastItem({ item, onDismiss }: { item: ToastRecord; onDismiss: () => void }) {
+function ToastItem({
+  item,
+  onDismiss,
+  dismissLabel,
+}: {
+  item: ToastRecord;
+  onDismiss: () => void;
+  dismissLabel: string;
+}) {
   const kind = item.kind ?? 'note';
   const critical = kind === 'critical';
   return (
@@ -134,7 +153,7 @@ function ToastItem({ item, onDismiss }: { item: ToastRecord; onDismiss: () => vo
         <p className={styles.title}>{item.title}</p>
         {item.detail ? <div className={styles.detail}>{item.detail}</div> : null}
       </div>
-      <IconButton label="Dismiss" intent="ghost" size="sm" onClick={onDismiss}>
+      <IconButton label={dismissLabel} intent="ghost" size="sm" onClick={onDismiss}>
         <Icon name="close" />
       </IconButton>
     </div>

@@ -1,0 +1,135 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  display: grid;
+  place-items: start center;
+  padding: var(--space-8) var(--space-4);
+  background: var(--color-overlay);
+}
+
+.dismiss {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.panel {
+  position: relative;
+  width: min(calc(var(--space-8) * 18), 100%);
+  margin-top: var(--space-8);
+  overflow: hidden;
+  background: var(--color-bg);
+  border: var(--border-width) solid var(--color-divider);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-panel);
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-3);
+  border-bottom: var(--border-width) solid var(--color-divider);
+}
+
+.leading {
+  color: var(--color-text-muted);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  padding-inline: 0;
+}
+
+.input:hover:not(:disabled),
+.input:focus-visible {
+  border: 0;
+  outline: none;
+  box-shadow: none;
+}
+
+.list {
+  margin: 0;
+  padding: var(--space-1);
+  list-style: none;
+  max-height: calc(var(--space-8) * 12);
+  overflow: auto;
+}
+
+.group {
+  padding: var(--space-2) var(--space-2) var(--space-1);
+  color: var(--color-text-muted);
+  font-size: var(--text-label);
+}
+
+.item {
+  margin: 0;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-2);
+  border: 0;
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--color-text);
+  font: inherit;
+  font-size: var(--text-body);
+  text-align: left;
+  cursor: pointer;
+}
+
+.active {
+  background: var(--color-mark-bg);
+}
+
+.blocked {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.detail {
+  color: var(--color-text-muted);
+  font-size: var(--text-label);
+}
+
+.shortcut {
+  flex: none;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+}
+
+.empty {
+  padding: var(--space-3);
+  color: var(--color-text-muted);
+}
+
+@media (hover: hover) {
+  .option:hover:not(:disabled) {
+    background: var(--color-mark-bg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    box-shadow: none;
+  }
+}

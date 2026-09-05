@@ -17,11 +17,12 @@ export interface DialogProps {
   actions?: ReactNode;
   /** Dialog width. Not control size. */
   width?: 'sm' | 'md';
+  closeLabel?: string;
   className?: string;
 }
 
 export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
-  { open, onClose, title, children, actions, width = 'md', className },
+  { open, onClose, title, children, actions, width = 'md', closeLabel, className },
   ref,
 ) {
   if (!open) {
@@ -36,6 +37,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
         title={title}
         actions={actions}
         width={width}
+        closeLabel={closeLabel}
         className={className}
       >
         {children}
@@ -45,7 +47,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
 });
 
 const DialogFrame = forwardRef<HTMLDivElement, Omit<DialogProps, 'open'>>(function DialogFrame(
-  { onClose, title, children, actions, width = 'md', className },
+  { onClose, title, children, actions, width = 'md', closeLabel = 'Close', className },
   ref,
 ) {
   const titleId = useId();
@@ -85,7 +87,13 @@ const DialogFrame = forwardRef<HTMLDivElement, Omit<DialogProps, 'open'>>(functi
           <h2 id={titleId} className={styles.title}>
             {title}
           </h2>
-          <IconButton label="Close" intent="ghost" className={styles.close} onClick={onClose}>
+          <IconButton
+            label={closeLabel}
+            intent="ghost"
+            className={styles.close}
+            data-devex-initial="skip"
+            onClick={onClose}
+          >
             <Icon name="close" />
           </IconButton>
         </div>

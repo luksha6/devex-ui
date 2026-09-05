@@ -1,3 +1,27 @@
+@font-face {
+  font-family: Onest;
+  src: url('./fonts/onest-300.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Onest;
+  src: url('./fonts/onest-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Onest;
+  src: url('./fonts/onest-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --font-sans: 'Onest', system-ui, sans-serif;
   --font-mono: var(--font-sans);

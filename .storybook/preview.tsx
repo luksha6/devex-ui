@@ -1,8 +1,16 @@
 import type { Preview } from '@storybook/react';
+import { Theme } from '../src/primitives/Theme/Theme';
 import '../src/styles/package.css';
 import './preview.css';
 
 const preview: Preview = {
+  decorators: [
+    (Story) => (
+      <Theme value="light">
+        <Story />
+      </Theme>
+    ),
+  ],
   parameters: {
     layout: 'padded',
     backgrounds: {

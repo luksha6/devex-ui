@@ -16,11 +16,12 @@ export interface DrawerProps {
   actions?: ReactNode;
   /** `bottom` is the mobile sheet. `end` is the side panel (becomes bottom under 640px). */
   side?: 'bottom' | 'end';
+  closeLabel?: string;
   className?: string;
 }
 
 export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer(
-  { open, onClose, title, children, actions, side = 'bottom', className },
+  { open, onClose, title, children, actions, side = 'bottom', closeLabel, className },
   ref,
 ) {
   if (!open) {
@@ -35,6 +36,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer(
         title={title}
         actions={actions}
         side={side}
+        closeLabel={closeLabel}
         className={className}
       >
         {children}
@@ -44,7 +46,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(function Drawer(
 });
 
 const DrawerFrame = forwardRef<HTMLDivElement, Omit<DrawerProps, 'open'>>(function DrawerFrame(
-  { onClose, title, children, actions, side = 'bottom', className },
+  { onClose, title, children, actions, side = 'bottom', closeLabel = 'Close', className },
   ref,
 ) {
   const titleId = useId();
@@ -89,7 +91,13 @@ const DrawerFrame = forwardRef<HTMLDivElement, Omit<DrawerProps, 'open'>>(functi
           <h2 id={titleId} className={styles.title}>
             {title}
           </h2>
-          <IconButton label="Close" intent="ghost" className={styles.close} onClick={onClose}>
+          <IconButton
+            label={closeLabel}
+            intent="ghost"
+            className={styles.close}
+            data-devex-initial="skip"
+            onClick={onClose}
+          >
             <Icon name="close" />
           </IconButton>
         </div>

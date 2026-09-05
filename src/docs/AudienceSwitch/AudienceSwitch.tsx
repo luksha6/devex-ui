@@ -12,6 +12,10 @@ export interface AudienceSwitchProps {
   blocks: readonly DocBlock[];
   path?: string;
   commit?: string;
+  audienceLabel?: string;
+  humanLabel?: string;
+  agentLabel?: string;
+  hint?: string;
   className?: string;
 }
 
@@ -21,20 +25,24 @@ export function AudienceSwitch({
   blocks,
   path,
   commit,
+  audienceLabel = 'Audience',
+  humanLabel = 'Human',
+  agentLabel = 'Agent',
+  hint = 'Agent view is markdown from the same blocks.',
   className,
 }: AudienceSwitchProps) {
   return (
     <div className={cx(styles.wrap, className)}>
       <SegmentedControl
-        label="Audience"
+        label={audienceLabel}
         value={value}
         onChange={onChange}
         options={[
-          { value: 'human', label: 'Human' },
-          { value: 'agent', label: 'Agent' },
+          { value: 'human', label: humanLabel },
+          { value: 'agent', label: agentLabel },
         ]}
       />
-      <p className={styles.hint}>Agent view is markdown from the same blocks.</p>
+      <p className={styles.hint}>{hint}</p>
       {value === 'agent' ? (
         <pre className={styles.agent} data-audience="agent">
           {toAgentMarkdown(blocks)}

@@ -24,10 +24,18 @@ export interface AlertProps {
   title?: string;
   children?: ReactNode;
   onDismiss?: () => void;
+  dismissLabel?: string;
   className?: string;
 }
 
-export function Alert({ kind = 'note', title, children, onDismiss, className }: AlertProps) {
+export function Alert({
+  kind = 'note',
+  title,
+  children,
+  onDismiss,
+  dismissLabel = 'Dismiss',
+  className,
+}: AlertProps) {
   const critical = kind === 'critical';
   const hasBody = Boolean(title || children);
   return (
@@ -39,7 +47,7 @@ export function Alert({ kind = 'note', title, children, onDismiss, className }: 
         <p className={styles.kind}>{KIND_LABEL[kind]}</p>
       </div>
       {onDismiss ? (
-        <IconButton label="Dismiss" intent="ghost" size="sm" onClick={onDismiss}>
+        <IconButton label={dismissLabel} intent="ghost" size="sm" onClick={onDismiss}>
           <Icon name="close" />
         </IconButton>
       ) : null}

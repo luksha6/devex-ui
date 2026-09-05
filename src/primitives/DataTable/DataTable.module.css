@@ -117,3 +117,8 @@ td.numeric {
   place-items: center;
   background: color-mix(in srgb, var(--color-bg) 72%, transparent);
 }
+
+.footer {
+  padding: var(--space-3) var(--space-4);
+  border-top: var(--border-width) solid var(--color-divider);
+}

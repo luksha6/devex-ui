@@ -20,4 +20,17 @@ describe('CodeBlock', () => {
     expect(writeText).toHaveBeenCalledWith('await client.retry();\n');
     expect(screen.getByRole('button', { name: 'Copied' })).toBeInTheDocument();
   });
+
+  it('stays untested until both stamps are set', () => {
+    render(<CodeBlock languages={languages} testedAgainst="knowledge@4a91c02" />);
+    expect(screen.getByText('untested')).toBeInTheDocument();
+  });
+
+  it('names a failed copy on the control', async () => {
+    const user = userEvent.setup();
+    vi.spyOn(navigator.clipboard, 'writeText').mockRejectedValue(new Error('denied'));
+    render(<CodeBlock languages={languages} />);
+    await user.click(screen.getAllByRole('button', { name: 'Copy' })[0]!);
+    expect(screen.getByRole('button', { name: 'Copy failed' })).toBeInTheDocument();
+  });
 });

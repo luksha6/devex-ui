@@ -4,13 +4,13 @@ import {
   cloneElement,
   useEffect,
   useId,
-  useLayoutEffect,
   useRef,
   useState,
   type ReactElement,
   type ReactNode,
 } from 'react';
 import { cx } from '../../utils/cx';
+import { useOverlayPosition } from '../../utils/useOverlayPosition';
 import { Portal } from '../Portal/Portal';
 import styles from './Tooltip.module.css';
 
@@ -20,7 +20,6 @@ type ChildProps = {
 
 export interface TooltipProps {
   content: ReactNode;
-  /** Single focusable element. `aria-describedby` is merged only while open. */
   children: ReactElement<ChildProps>;
   className?: string;
 }
@@ -28,20 +27,12 @@ export interface TooltipProps {
 export function Tooltip({ content, children, className }: TooltipProps) {
   const id = useId();
   const wrapRef = useRef<HTMLSpanElement>(null);
+  const tipRef = useRef<HTMLSpanElement>(null);
   const stickyRef = useRef(false);
   const [open, setOpen] = useState(false);
-  const [coords, setCoords] = useState({ top: 0, left: 0 });
-
-  function place() {
-    const rect = wrapRef.current?.getBoundingClientRect();
-    if (!rect) {
-      return;
-    }
-    setCoords({ top: rect.top, left: rect.left + rect.width / 2 });
-  }
+  const { style } = useOverlayPosition(wrapRef, tipRef, open, 'center', 'top');
 
   function openTip() {
-    place();
     setOpen(true);
   }
 
@@ -50,22 +41,6 @@ export function Tooltip({ content, children, className }: TooltipProps) {
     setOpen(false);
   }
 
-  useLayoutEffect(() => {
-    if (!open) {
-      return;
-    }
-    place();
-    function onScroll() {
-      place();
-    }
-    window.addEventListener('scroll', onScroll, true);
-    window.addEventListener('resize', onScroll);
-    return () => {
-      window.removeEventListener('scroll', onScroll, true);
-      window.removeEventListener('resize', onScroll);
-    };
-  }, [open]);
-
   useEffect(() => {
     if (!open) {
       return;
@@ -73,11 +48,12 @@ export function Tooltip({ content, children, className }: TooltipProps) {
     function onKey(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         event.preventDefault();
+        event.stopPropagation();
         closeTip();
       }
     }
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    document.addEventListener('keydown', onKey, true);
+    return () => document.removeEventListener('keydown', onKey, true);
   }, [open]);
 
   useEffect(() => {
@@ -149,9 +125,10 @@ export function Tooltip({ content, children, className }: TooltipProps) {
         <Portal>
           <span
             id={id}
+            ref={tipRef}
             role="tooltip"
             className={cx(styles.tip, styles.open)}
-            style={{ top: coords.top, left: coords.left }}
+            style={{ ...style, zIndex: 'var(--z-tooltip)' }}
           >
             {content}
           </span>

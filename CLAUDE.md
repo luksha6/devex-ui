@@ -6,13 +6,13 @@ Do not mention external employers or job applications in repository files.
 
 ## Commands
 
-| Task             | Command                                               |
-| ---------------- | ----------------------------------------------------- |
-| Catalog          | `npm run storybook` (port 6006)                       |
-| Test             | `npm test`                                            |
-| Lint             | `npm run lint` (ESLint, Stylelint, Prettier, hex ban) |
-| Typecheck + dist | `npm run build`                                       |
-| Pack sanity      | `npm pack --dry-run`                                  |
+| Task             | Command                                                         |
+| ---------------- | --------------------------------------------------------------- |
+| Catalog          | `npm run storybook` (port 6006)                                 |
+| Test             | `npm test`                                                      |
+| Lint             | `npm run lint` (ESLint, Stylelint, Prettier, hex ban, contrast) |
+| Typecheck + dist | `npm run build`                                                 |
+| Pack sanity      | `npm pack --dry-run`                                            |
 
 After generating UI or changing the library, run `npm test && npm run lint && npm run build`. Do not skip hooks.
 

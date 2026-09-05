@@ -12,4 +12,13 @@ describe('Icon', () => {
     render(<Icon name="search" label="Search" />);
     expect(screen.getByRole('img', { name: 'Search' })).toBeInTheDocument();
   });
+
+  it('renders a custom glyph', () => {
+    render(
+      <Icon label="Custom">
+        <circle cx="8" cy="8" r="4" />
+      </Icon>,
+    );
+    expect(screen.getByRole('img', { name: 'Custom' }).querySelector('circle')).toBeInTheDocument();
+  });
 });

@@ -23,29 +23,50 @@ import { specimen } from './Foundation';
   </div>
   <pre className={specimen.code}>{`npm i @luksha6/devex-ui`}</pre>
   <div className={specimen.prose}>
-    <p>Then use it. Load styles.css once. The JS entry does not apply CSS.</p>
+    <p>
+      Load styles.css once. The JS entry does not apply CSS. Wrap the app in Theme so tokens and
+      the reset apply under a root you own. Read the value with useTheme. Onest ships in that CSS
+      file. Overlay primitives and Theme are client components. Paragraphs can hold links.
+    </p>
   </div>
   <pre
     className={specimen.code}
   >{`import '@luksha6/devex-ui/styles.css';
-import { Button } from '@luksha6/devex-ui';
-import { PageMasthead } from '@luksha6/devex-ui/docs';
+import { Button, Page, Theme } from '@luksha6/devex-ui';
+import { Run, type DocBlock } from '@luksha6/devex-ui/docs';
 
 export function App() {
   return (
-    <>
-      <PageMasthead
-        crumb="Platform / Knowledge"
-        title="Rate limits"
-        purpose="What 429 means and how to retry."
-        owner="@platform-core"
-        verifiedAt="6d ago"
-        commit="4a91c02"
-        words={1240}
-        tokens={2100}
-      />
-      <Button intent="primary">Continue</Button>
-    </>
+    <Theme value="light">
+      <Page>
+        <Button intent="primary">Continue</Button>
+      </Page>
+    </Theme>
+  );
+}`}</pre>
+  <div className={specimen.prose}>
+    <p>
+      Vite is the snippet above. Next App Router: load styles.css in the root layout. Mark the
+      file that mounts Theme, Dialog, Menu, Drawer, Nav, Toast, Tooltip, Popover, or CommandPalette as{' '}
+      <code>'use client'</code>. Pass Next <code>Link</code> into TextLink and Nav:{' '}
+      <code>{`as={Link}`}</code> / <code>{`linkAs={Link}`}</code>. Button can take{' '}
+      <code>href</code> for a painted link.
+    </p>
+  </div>
+  <pre
+    className={specimen.code}
+  >{`'use client';
+
+import '@luksha6/devex-ui/styles.css';
+import { Theme, Page, Button } from '@luksha6/devex-ui';
+
+export default function PageView() {
+  return (
+    <Theme value="light">
+      <Page>
+        <Button>Continue</Button>
+      </Page>
+    </Theme>
   );
 }`}</pre>
   <table className={specimen.table}>
@@ -62,19 +83,19 @@ export function App() {
       </tr>
       <tr>
         <td className={specimen.mono}>@luksha6/devex-ui</td>
-        <td>Product kit: actions, forms, overlays, data, type</td>
+        <td>Product kit: actions, forms, overlays, layout, data, type, Theme</td>
       </tr>
       <tr>
         <td className={specimen.mono}>@luksha6/devex-ui/docs</td>
         <td>
           Pages, dual reader, and run UI: PageMasthead, AudienceSwitch, CodeBlock, ParameterTable,
-          Callout, ResultRow, FreshnessStamp, SectionAnchor, Stream, ToolCall, RunStatus, plus
+          Callout, ResultRow, FreshnessStamp, SectionAnchor, Stream, ToolCall, RunStatus, Run, plus
           toAgentMarkdown and renderHuman
         </td>
       </tr>
     </tbody>
   </table>
   <p className={specimen.why}>
-    Refused: deep-import src/, skip styles.css, or treat this catalog as the package.
+    Refused: deep-import src/, skip styles.css, skip Theme, or treat this catalog as the package.
   </p>
 </div>

@@ -23,6 +23,8 @@ export interface DataTableProps {
   sortDir?: 'asc' | 'desc';
   onSort?: (key: string) => void;
   rowKey?: string;
+  footer?: ReactNode;
+  loadingLabel?: string;
   className?: string;
 }
 
@@ -49,6 +51,8 @@ export function DataTable({
   sortDir,
   onSort,
   rowKey,
+  footer,
+  loadingLabel = 'Loading table',
   className,
 }: DataTableProps) {
   const showEmpty = !loading && rows.length === 0;
@@ -58,7 +62,7 @@ export function DataTable({
     <div className={cx(styles.wrap, className)} aria-busy={loading || undefined}>
       {loading ? (
         <div className={styles.loading}>
-          <Spinner label="Loading table" />
+          <Spinner label={loadingLabel} />
         </div>
       ) : null}
       {caption ? (
@@ -143,6 +147,7 @@ export function DataTable({
           </tbody>
         </table>
       </div>
+      {footer ? <div className={styles.footer}>{footer}</div> : null}
     </div>
   );
 }
